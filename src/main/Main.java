@@ -8,7 +8,7 @@ public class Main {
         DataBase db = new DataBase();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
-        Book Book1 = new PhysicalBook(1, "Crime and Punishment", "Dostoievski", 500, "mistery",1920,2,2,"Hard",true);
+        Book Book1 = new PhysicalBook(1, "Crime and Punishment", "Dostoievski", 500, "mystery",1920,2,2,"Hard",true);
         //String det = scanner.nextLine();
         //String[] att = det.split("/");
         service.addBook(db, Book1);
