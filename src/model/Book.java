@@ -1,32 +1,21 @@
 package model;
 
 public abstract class Book extends Object {
-    private int id;
     private String title;
     private String author;
     private int pageNumber;
     private String genre;
     private int publicationYear;
-    private double userRating;
-    private double price;
+    private double userRating = 0;
+    private int stock;
 
-    public Book(int id, String title, String author, int pageNumber, String genre, int publicationYear, double userRating, double price){
-        this.id = id;
+    public Book(String title, String author, int pageNumber, String genre, int publicationYear, int stock){
         this.title = title;
         this.author = author;
         this.pageNumber = pageNumber;
         this.genre = genre;
         this.publicationYear = publicationYear;
-        this.userRating = userRating;
-        this.price = price;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.stock = stock;
     }
 
     public String getTitle() {
@@ -77,16 +66,16 @@ public abstract class Book extends Object {
         this.userRating = userRating;
     }
 
-    public double getPrice() {
-        return price;
+    public int getStock() {
+        return stock;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     @Override
     public String toString(){
-        return id + " / " + title + " / " + author + " / " + pageNumber + " / " + genre + " / " + publicationYear + " / " + userRating + " / " + price;
+        return title + " / " + author + " / " + pageNumber + " / " + genre + " / " + publicationYear + " / " + userRating;
     }
 }
