@@ -7,12 +7,12 @@ public class Company {
     private boolean isAffiliated;
     private User[] employees;
 
-    public Company(int i, String n, String l, boolean iA, User[] e){
-        this.id = i;
-        this.name = n;
-        this.location = l;
-        this.isAffiliated = iA;
-        this.employees = e;
+    public Company(int id, String name, String location, boolean isAffiliatedA, User[] employees){
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.isAffiliated = isAffiliatedA;
+        this.employees = employees;
     }
 
     public int getId() {

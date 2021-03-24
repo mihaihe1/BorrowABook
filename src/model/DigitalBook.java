@@ -5,10 +5,10 @@ public class DigitalBook extends Book{
     private final boolean freeTrial;
     private final int freeTrialLength = 3;
 
-    public DigitalBook(int i, String t, String a, int pN, String g, int pY, double uR, int p, String f, boolean fT){
-        super(i, t, a, pN, g, pY, uR, p);
-        this.format = f;
-        this.freeTrial = fT;
+    public DigitalBook(int id, String title, String author, int pageNumber, String genre, int publicationYear, double userRating, double price, String format, boolean freeTrial){
+        super(id, title, author, pageNumber, genre, publicationYear, userRating, price);
+        this.format = format;
+        this.freeTrial = freeTrial;
     }
 
     public void printDB(){
@@ -25,5 +25,13 @@ public class DigitalBook extends Book{
 
     public int getFreeTrialLength() {
         return freeTrialLength;
+    }
+
+    @Override
+    public String toString(){
+        if(freeTrial == true)
+            return super.toString() + " / " + format + " / " + freeTrial + " / " + freeTrialLength;
+        else
+            return super.toString() + " / " + format + " / " + freeTrial;
     }
 }

@@ -4,10 +4,10 @@ public class PhysicalBook extends Book{
     private String coverType;
     private boolean isNew;
 
-    public PhysicalBook(int i, String t, String a, int pN, String g, int pY, double uR, int p, String cT, boolean iN){
-        super(i, t, a, pN, g, pY, uR, p);
-        this.coverType = cT;
-        this.isNew = iN;
+    public PhysicalBook(int id, String title, String author, int pageNumber, String genre, int publicationYear, double userRating, double price, String coverType, boolean isNew){
+        super(id, title, author, pageNumber, genre, publicationYear, userRating, price);
+        this.coverType = coverType;
+        this.isNew = isNew;
     }
 
     public void printPB(){
@@ -28,5 +28,10 @@ public class PhysicalBook extends Book{
 
     public void setNew(boolean aNew) {
         isNew = aNew;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + " / " + coverType + " / " + isNew;
     }
 }

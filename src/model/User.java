@@ -5,14 +5,14 @@ public class User {
     private String name;
     private String email;
     private String address;
-    private Book[] bookList;
+//    private Book[] bookList;
 
-    public User(int i, String n, String e, String a, Book[] bL){
-        this.id = i;
-        this.name = n;
-        this.email = e;
-        this.address = a;
-        this.bookList = bL;
+    public User(int id, String name, String email, String address){
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.address = address;
+//        this.bookList = bL;
     }
 
     public int getId() {
@@ -47,11 +47,11 @@ public class User {
         this.address = address;
     }
 
-    public Book[] getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(Book[] bookList) {
-        this.bookList = bookList;
-    }
+//    public Book[] getBookList() {
+//        return bookList;
+//    }
+//
+//    public void setBookList(Book[] bookList) {
+//        this.bookList = bookList;
+//    }
 }

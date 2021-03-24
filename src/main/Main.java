@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args){
-        DataBase db = new DataBase();
+        Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
         Book Book1 = new PhysicalBook(1, "Crime and Punishment", "Dostoievski", 500, "mystery",1920,2,2,"Hard",true);
@@ -19,5 +19,11 @@ public class Main {
                 System.out.println(bb.getCoverType());
             }
         }
+
+//        User user1 = new User(1, "mihaihe", "mihai@gmail.com", "Str. PAO, nr. 242");
+//        service.addUser(db, user1);
+//        System.out.println(db.getUsers()[0].getName());
+        service.printBooksDetails(db);
+
     }
 }
