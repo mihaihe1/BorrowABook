@@ -18,11 +18,6 @@ public class DigitalBook extends Book{
         this.freeTrialLength = freeTrialLength;
     }
 
-
-    public void printDB(){
-        System.out.println(format+" "+freeTrial+" "+freeTrialLength);
-    }
-
     public String getFormat() {
         return format;
     }

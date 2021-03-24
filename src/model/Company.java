@@ -1,34 +1,25 @@
 package model;
 
-public class Company {
-    private int id;
-    private String name;
+public class Company extends User{
+    private String companyName;
     private String location;
     private boolean isAffiliated;
-    private User[] employees;
+    private Person[] employees;
 
-    public Company(int id, String name, String location, boolean isAffiliatedA, User[] employees){
-        this.id = id;
-        this.name = name;
+    public Company(String userName, String password, String email, String companyName, String location, boolean isAffiliatedA, Person[] employees){
+        super(userName, password, email);
+        this.companyName = companyName;
         this.location = location;
         this.isAffiliated = isAffiliatedA;
         this.employees = employees;
     }
 
-    public int getId() {
-        return id;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getLocation() {
@@ -47,11 +38,11 @@ public class Company {
         isAffiliated = affiliated;
     }
 
-    public User[] getEmployees() {
+    public Person[] getEmployees() {
         return employees;
     }
 
-    public void setEmployees(User[] employees) {
+    public void setEmployees(Person[] employees) {
         this.employees = employees;
     }
 }

@@ -4,7 +4,7 @@ public class PhysicalBook extends Book{
     private String coverType;
     private boolean isNew;
 
-    public PhysicalBook( String title, String author, int pageNumber, String genre, int publicationYear, int stock, String coverType, boolean isNew){
+    public PhysicalBook(String title, String author, int pageNumber, String genre, int publicationYear, int stock, String coverType, boolean isNew){
         super(title, author, pageNumber, genre, publicationYear, stock);
         this.coverType = coverType;
         this.isNew = isNew;

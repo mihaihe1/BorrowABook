@@ -1,34 +1,36 @@
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class User {
-    private int id;
-    private String name;
+    private String userName;
+    private String password;
     private String email;
-    private String address;
-//    private Book[] bookList;
+    private final Date accountCreation;
 
-    public User(int id, String name, String email, String address){
-        this.id = id;
-        this.name = name;
+    public User(String userName, String password, String email){
+        this.userName = userName;
+        this.password = password;
         this.email = email;
-        this.address = address;
-//        this.bookList = bL;
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        this.accountCreation = new Date(System.currentTimeMillis());
     }
 
-    public int getId() {
-        return id;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -39,19 +41,7 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public Date getAccountCreation() {
+        return accountCreation;
     }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-//    public Book[] getBookList() {
-//        return bookList;
-//    }
-//
-//    public void setBookList(Book[] bookList) {
-//        this.bookList = bookList;
-//    }
 }

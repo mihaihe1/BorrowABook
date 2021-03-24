@@ -1,6 +1,8 @@
 package main;
 import model.*;
 import service.*;
+
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -8,6 +10,18 @@ public class Main {
         Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
+
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date d = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(d);
+
+        c.add(Calendar.DATE, 30);
+        Date currentDatePlusOne = c.getTime();
+
+        System.out.println(currentDatePlusOne);
+
+        System.out.println(d);
 
         while(true){
             System.out.println("Please type one of the following commands: add, view or exit");
