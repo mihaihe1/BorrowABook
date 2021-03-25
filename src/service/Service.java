@@ -2,14 +2,16 @@ package service;
 import model.*;
 
 public class Service {
+
+    private final BookService bookService = new BookService();
+
     public void addUser(Bookster db, User user){
         int nextAvailableIndex = getNumberOfUsers(db);
         db.getUsers()[nextAvailableIndex] = user;
     }
 
     public void addBook(Bookster db, Book book){
-        int nextAvailableIndex = getNumberOfBooks(db);
-        db.getBooks()[nextAvailableIndex] = book;
+        bookService.addBook(db, book);
     }
 
     public void printBooksDetails(Bookster db){
@@ -29,14 +31,5 @@ public class Service {
         return nrUsers;
     }
 
-    public int getNumberOfBooks(Bookster db){
-        int nrBooks = 0;
-        for(Book b : db.getBooks()){
-            if(b != null){
-                nrBooks++;
-            }
-        }
-        return nrBooks;
-    }
 
 }

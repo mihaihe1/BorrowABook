@@ -9,7 +9,7 @@ public class Subscription {
     private int maxNumberToBorrow;
     private Date expirationDate;
 
-    public Subscription(String subscriptionType, int maxNumberToBorrow, Date expirationDate){
+    public Subscription(String subscriptionType, int maxNumberToBorrow){
         this.subscriptionType = subscriptionType;
         this.maxNumberToBorrow = maxNumberToBorrow;
 

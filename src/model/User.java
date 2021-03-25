@@ -3,7 +3,7 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class User {
+public abstract class User {
     private String userName;
     private String password;
     private String email;

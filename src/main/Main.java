@@ -10,20 +10,28 @@ public class Main {
         Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
+        Borrow borrow[] = new Borrow[50];
 
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date d = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(d);
+        Subscription bronze = new Subscription("bronze", 1);
+        PickUpPoint pickUpUnirii = new PickUpPoint("Bucharest", "Str. Unirii", true);
+        User user1 = new Person("mihai", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
 
-        c.add(Calendar.DATE, 30);
-        Date currentDatePlusOne = c.getTime();
+        User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", true, new Person[100]);
 
-        System.out.println(currentDatePlusOne);
 
-        System.out.println(d);
+//        SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        Date d = new Date();
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(d);
+//
+//        c.add(Calendar.DATE, 30);
+//        Date currentDatePlusOne = c.getTime();
+//
+//        System.out.println(currentDatePlusOne);
+//
+//        System.out.println(d);
 
-        while(true){
+        /*while(true){
             System.out.println("Please type one of the following commands: add, view or exit");
             String line = scanner.nextLine();
             switch (line){
@@ -91,7 +99,7 @@ public class Main {
 
 
             }
-        }
+        }*/
 
 //        Book Book1 = new PhysicalBook(1, "Crime and Punishment", "Dostoievski", 500, "mystery",1920,2,2,"Hard",true);
         //String det = scanner.nextLine();
