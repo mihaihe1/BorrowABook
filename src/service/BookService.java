@@ -20,4 +20,15 @@ public class BookService {
         return nrBooks;
     }
 
+    public void printBooksDetails(Bookster db){
+        for(Book b : db.getBooks()){
+            if(b != null)
+                System.out.println(b);
+        }
+    }
+
+    public void updateBookStock(Book book, int stock){
+        book.setStock(stock);
+    }
+
 }

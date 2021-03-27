@@ -10,27 +10,38 @@ public class Main {
         Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
-        Borrow borrow[] = new Borrow[50];
+//        Borrow borrow[] = new Borrow[50];
 
-        Subscription bronze = new Subscription("bronze", 1);
+        Subscription bronzeSubscription = new Subscription("bronze");
+        Subscription silverSubscription = new Subscription("silver");
+        Subscription goldSubscription = new Subscription("gold");
         PickUpPoint pickUpUnirii = new PickUpPoint("Bucharest", "Str. Unirii", true);
+        service.addPickUpPoint(db, pickUpUnirii);
+
         User user1 = new Person("mihai", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
+        service.addUser(db, user1);
 
-        User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", true, new Person[100]);
+        User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], bronzeSubscription);
+        service.addUser(db, userGoogle);
+        service.addPersonToCompany((Person)user1, (Company)userGoogle);
+        service.printUsersDetails(db);
 
+        Book book1 = new PhysicalBook("Crime and Punishment", "Dostoievski", 500, "mystery",1920,2,"Hard",true);
+        service.addBook(db, book1);
+        service.printBooksDetails(db);
+        service.updateBookStock(book1, 5);
+        service.printBooksDetails(db);
+        Borrow borrow1 = new Borrow(user1, book1);
+        service.addBorrow(db, borrow1);
+        
+//        service.addBorrow(db, borrow1);
+        service.printBorrowDetails(db);
+        service.printBooksDetails(db);
 
-//        SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//        Date d = new Date();
-//        Calendar c = Calendar.getInstance();
-//        c.setTime(d);
-//
-//        c.add(Calendar.DATE, 30);
-//        Date currentDatePlusOne = c.getTime();
-//
-//        System.out.println(currentDatePlusOne);
-//
-//        System.out.println(d);
+//        service.updatePickUpPointAddress(pickUpUnirii, "Str. Unirii2");
+//        System.out.println(pickUpUnirii);
 
+        // ---------------------MENU-----------------------
         /*while(true){
             System.out.println("Please type one of the following commands: add, view or exit");
             String line = scanner.nextLine();
@@ -101,7 +112,6 @@ public class Main {
             }
         }*/
 
-//        Book Book1 = new PhysicalBook(1, "Crime and Punishment", "Dostoievski", 500, "mystery",1920,2,2,"Hard",true);
         //String det = scanner.nextLine();
         //String[] att = det.split("/");
 //        service.addBook(db, Book1);

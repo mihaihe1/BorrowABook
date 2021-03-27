@@ -9,9 +9,21 @@ public class Subscription {
     private int maxNumberToBorrow;
     private Date expirationDate;
 
-    public Subscription(String subscriptionType, int maxNumberToBorrow){
+    public Subscription(String subscriptionType){
         this.subscriptionType = subscriptionType;
-        this.maxNumberToBorrow = maxNumberToBorrow;
+        switch (subscriptionType){
+            case "bronze":
+                this.maxNumberToBorrow = 1;
+                break;
+
+            case "silver":
+                this.maxNumberToBorrow = 3;
+                break;
+
+            case "gold":
+                this.maxNumberToBorrow = 5;
+                break;
+        }
 
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date d = new Date();
@@ -21,5 +33,29 @@ public class Subscription {
         Date currentDatePlusMonth = c.getTime();
 
         this.expirationDate = currentDatePlusMonth;
+    }
+
+    public String getSubscriptionType() {
+        return subscriptionType;
+    }
+
+    public void setSubscriptionType(String subscriptionType) {
+        this.subscriptionType = subscriptionType;
+    }
+
+    public int getMaxNumberToBorrow() {
+        return maxNumberToBorrow;
+    }
+
+    public void setMaxNumberToBorrow(int maxNumberToBorrow) {
+        this.maxNumberToBorrow = maxNumberToBorrow;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 }

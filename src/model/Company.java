@@ -3,15 +3,15 @@ package model;
 public class Company extends User{
     private String companyName;
     private String location;
-    private boolean isAffiliated;
     private Person[] employees;
+    private Subscription subscription;
 
-    public Company(String userName, String password, String email, String companyName, String location, boolean isAffiliatedA, Person[] employees){
+    public Company(String userName, String password, String email, String companyName, String location, Person[] employees, Subscription subscription){
         super(userName, password, email);
         this.companyName = companyName;
         this.location = location;
-        this.isAffiliated = isAffiliatedA;
         this.employees = employees;
+        this.subscription = subscription;
     }
 
     public String getCompanyName() {
@@ -30,19 +30,24 @@ public class Company extends User{
         this.location = location;
     }
 
-    public boolean isAffiliated() {
-        return isAffiliated;
-    }
-
-    public void setAffiliated(boolean affiliated) {
-        isAffiliated = affiliated;
-    }
-
     public Person[] getEmployees() {
         return employees;
     }
 
     public void setEmployees(Person[] employees) {
         this.employees = employees;
+    }
+
+    public Subscription getSubscription() {
+        return subscription;
+    }
+
+    public void setSubscription(Subscription subscription) {
+        this.subscription = subscription;
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + " / " + companyName + " / " + subscription.getSubscriptionType();
     }
 }

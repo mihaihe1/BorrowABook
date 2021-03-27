@@ -34,4 +34,9 @@ public class PickUpPoint {
     public void setOpenedOnWeekends(boolean openedOnWeekends) {
         this.openedOnWeekends = openedOnWeekends;
     }
+
+    @Override
+    public String toString(){
+        return city + " / " + address + " / " + openedOnWeekends;
+    }
 }

@@ -45,4 +45,9 @@ public class Person extends User{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + " / " + firstName + " / " + lastName + " / " + phoneNumber;
+    }
 }

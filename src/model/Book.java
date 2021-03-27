@@ -76,6 +76,6 @@ public abstract class Book extends Object {
 
     @Override
     public String toString(){
-        return title + " / " + author + " / " + pageNumber + " / " + genre + " / " + publicationYear + " / " + userRating;
+        return title + " / " + author + " / " + pageNumber + " / " + genre + " / " + publicationYear + " / " + userRating + " / " + stock;
     }
 }

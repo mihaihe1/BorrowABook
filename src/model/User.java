@@ -3,7 +3,7 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class User {
+public abstract class User extends Object{
     private String userName;
     private String password;
     private String email;
@@ -43,5 +43,10 @@ public abstract class User {
 
     public Date getAccountCreation() {
         return accountCreation;
+    }
+
+    @Override
+    public String toString(){
+        return userName + " / " + email + " / " + accountCreation;
     }
 }
