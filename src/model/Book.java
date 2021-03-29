@@ -7,6 +7,7 @@ public abstract class Book extends Object {
     private String genre;
     private int publicationYear;
     private double userRating = 0;
+    private int nrRatings = 0;
     private int stock;
 
     public Book(String title, String author, int pageNumber, String genre, int publicationYear, int stock){
@@ -64,6 +65,14 @@ public abstract class Book extends Object {
 
     public void setUserRating(double userRating) {
         this.userRating = userRating;
+    }
+
+    public int getNrRatings() {
+        return nrRatings;
+    }
+
+    public void setNrRatings(int nrRatings) {
+        this.nrRatings = nrRatings;
     }
 
     public int getStock() {

@@ -26,9 +26,18 @@ public class Service {
         bookService.printBooksDetails(db);
     }
 
+    public void searchBookByGenre(Bookster db, String genre){
+        bookService.searchBookByGenre(db, genre);
+    }
+
     public void updateBookStock(Book book, int stock) {
         bookService.updateBookStock(book, stock);
     }
+
+    public void rateBook(Bookster db, User user, String bookTitle, int rating){
+        bookService.rateBook(db, user, bookTitle, rating);
+    }
+
 
     // -------------------START PICKUP
 
@@ -45,6 +54,13 @@ public class Service {
             }
         }
         return nrP;
+    }
+
+    public void printPickUpPoints(Bookster db){
+        for(PickUpPoint p : db.getPickUpPoints()){
+            if(p != null)
+                System.out.println(p);
+        }
     }
 
     public void updatePickUpPointAddress(PickUpPoint pickUpPoint, String address){

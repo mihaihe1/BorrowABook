@@ -2,6 +2,7 @@ package service;
 
 import model.Book;
 import model.Bookster;
+import model.User;
 
 public class BookService {
 
@@ -29,6 +30,30 @@ public class BookService {
 
     public void updateBookStock(Book book, int stock){
         book.setStock(stock);
+    }
+
+    public void searchBookByGenre(Bookster db, String genre){
+
+        boolean ok = false;
+
+        for(Book b : db.getBooks())
+            if(b != null && b.getGenre() == genre){
+                System.out.println(b);
+                ok = true;
+            }
+        if(!ok)
+            System.out.println("There are no books of that genre!");
+    }
+
+    public void rateBook(Bookster db, User user, String bookTitle, int rating){
+        for(Book b : db.getBooks())
+            if(b != null && b.getTitle() == bookTitle){
+                double ratingActual = b.getUserRating();
+                int nrRatings = b.getNrRatings();
+                double newRating = ((ratingActual * nrRatings) + rating) / (nrRatings+1);
+                b.setNrRatings(nrRatings+1);
+                b.setUserRating(newRating);
+            }
     }
 
 }

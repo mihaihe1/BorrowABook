@@ -42,7 +42,7 @@ public class UserService {
 
     public int getMaxToBorrow(Bookster db, User user){
         for(User u : db.getUsers())
-            if(u != null && u instanceof Company){
+            if(u instanceof Company){
                 Person[] employeeList = ((Company) u).getEmployees();
                 for(Person p : employeeList)
                     if(p.getUserName() == user.getUserName())
@@ -51,4 +51,5 @@ public class UserService {
 
         return 0;
     }
+
 }

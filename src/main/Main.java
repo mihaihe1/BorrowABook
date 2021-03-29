@@ -1,3 +1,35 @@
+/*
+    Obiecte:
+        -Book
+            -PhysicalBook
+            -DigitalBook
+        -Bookster
+        -Borrow
+        -User
+            -Person
+            -Company
+        -PickUpPoint
+        -Subscription
+        -Service
+        -BookService
+        -UserService
+
+    Actiuni:
+        - adaugare carte
+        - adaugare pickuppoint
+        - adaugare user
+        - adaugare imprumut
+        - adaugare persoana la companie
+        - adaugare rating carte
+        - afisare carti
+        - afisare useri
+        - afisare imprumuturi
+        - calculare nr maxim de carti pe care o persoana le poate imprumuta
+        - calculare nr de carti imprumutate de o persoana
+        - actualizare stoc carte
+        - actualizare adresa pickuppoint
+        - cautare carti dupa gen
+*/
 package main;
 import model.*;
 import service.*;
@@ -10,7 +42,7 @@ public class Main {
         Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
-//        Borrow borrow[] = new Borrow[50];
+
 
         Subscription bronzeSubscription = new Subscription("bronze");
         Subscription silverSubscription = new Subscription("silver");
@@ -26,20 +58,28 @@ public class Main {
         service.addPersonToCompany((Person)user1, (Company)userGoogle);
         service.printUsersDetails(db);
 
-        Book book1 = new PhysicalBook("Crime and Punishment", "Dostoievski", 500, "mystery",1920,2,"Hard",true);
+        Book book1 = new PhysicalBook("Crime and Punishment", "Dostoievski", 500, "mystery",1866,2,"Hard",true);
+        Book book2 = new DigitalBook("The Metamorphosis", "Kafka", 100, "fiction", 1915, 10, ".pdf", true);
         service.addBook(db, book1);
+        service.addBook(db, book2);
         service.printBooksDetails(db);
         service.updateBookStock(book1, 5);
         service.printBooksDetails(db);
         Borrow borrow1 = new Borrow(user1, book1);
         service.addBorrow(db, borrow1);
-        
+
 //        service.addBorrow(db, borrow1);
         service.printBorrowDetails(db);
         service.printBooksDetails(db);
 
-//        service.updatePickUpPointAddress(pickUpUnirii, "Str. Unirii2");
-//        System.out.println(pickUpUnirii);
+        service.updatePickUpPointAddress(pickUpUnirii, "Str. Unirii2");
+        service.printPickUpPoints(db);
+
+        service.searchBookByGenre(db, "mystery");
+
+        service.rateBook(db, user1, "Crime and Punishment", 5);
+        service.rateBook(db, userGoogle, "Crime and Punishment", 4);
+        service.printBooksDetails(db);
 
         // ---------------------MENU-----------------------
         /*while(true){
