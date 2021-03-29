@@ -24,6 +24,7 @@
         - afisare carti
         - afisare useri
         - afisare imprumuturi
+        - afisare firma careia o sa ii expire cel mai repede abonamentul
         - calculare nr maxim de carti pe care o persoana le poate imprumuta
         - calculare nr de carti imprumutate de o persoana
         - actualizare stoc carte
@@ -54,11 +55,13 @@ public class Main {
         service.addUser(db, user1);
 
         User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], bronzeSubscription);
+        User userTesla = new Company("tesla_books", "5555", "tesla@gmail.com", "Tesla", "Str. Tesla", new Person[50], goldSubscription);
+        service.addUser(db, userTesla);
         service.addUser(db, userGoogle);
         service.addPersonToCompany((Person)user1, (Company)userGoogle);
         service.printUsersDetails(db);
 
-        Book book1 = new PhysicalBook("Crime and Punishment", "Dostoievski", 500, "mystery",1866,2,"Hard",true);
+        Book book1 = new PhysicalBook("Crime and Punishment", "Dostoevsky", 500, "mystery",1866,2,"Hard",true);
         Book book2 = new DigitalBook("The Metamorphosis", "Kafka", 100, "fiction", 1915, 10, ".pdf", true);
         service.addBook(db, book1);
         service.addBook(db, book2);
@@ -80,6 +83,7 @@ public class Main {
         service.rateBook(db, user1, "Crime and Punishment", 5);
         service.rateBook(db, userGoogle, "Crime and Punishment", 4);
         service.printBooksDetails(db);
+        service.printFirstCompanyWithExpiredSubscription(db);
 
         // ---------------------MENU-----------------------
         /*while(true){

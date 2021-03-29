@@ -18,6 +18,8 @@ public class Service {
         userService.printUsersDetails(db);
     }
 
+    public void printFirstCompanyWithExpiredSubscription(Bookster db){ userService.printFirstCompanyWithExpiredSubscription(db);}
+
     public void addBook(Bookster db, Book book){
         bookService.addBook(db, book);
     }

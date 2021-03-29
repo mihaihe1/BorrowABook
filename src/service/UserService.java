@@ -2,6 +2,9 @@ package service;
 
 import model.*;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class UserService {
 
     public void addUser(Bookster db, User user){
@@ -45,11 +48,25 @@ public class UserService {
             if(u instanceof Company){
                 Person[] employeeList = ((Company) u).getEmployees();
                 for(Person p : employeeList)
-                    if(p.getUserName() == user.getUserName())
+                    if(p != null && p.getUserName() == user.getUserName())
                         return ((Company) u).getSubscription().getMaxNumberToBorrow();
             }
 
         return 0;
     }
 
+    public void printFirstCompanyWithExpiredSubscription(Bookster db){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2022, Calendar.JANUARY, 0);
+        Date date = calendar.getTime();
+        String companyName = "";
+
+        for(User u : db.getUsers())
+            if (u instanceof Company && ((Company) u).getSubscription().getExpirationDate().before(date)){
+                date = ((Company)u).getSubscription().getExpirationDate();
+                companyName = ((Company)u).getCompanyName();
+            }
+
+        System.out.println(companyName + " " + date);
+    }
 }

@@ -12,6 +12,10 @@ public class Subscription {
     public Subscription(String subscriptionType){
         this.subscriptionType = subscriptionType;
         switch (subscriptionType){
+            case "none":
+                this.maxNumberToBorrow = 0;
+                break;
+
             case "bronze":
                 this.maxNumberToBorrow = 1;
                 break;
