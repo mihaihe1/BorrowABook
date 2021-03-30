@@ -6,39 +6,30 @@ public class Service {
     private final BookService bookService = new BookService();
     private final UserService userService = new UserService();
 
-    public void addUser(Bookster db, User user){
-        userService.addUser(db, user);
-    }
+    public void addUser(Bookster db, User user){ userService.addUser(db, user); }
 
-    public void addPersonToCompany(Person person, Company company){
-        userService.addPersonToCompany(person, company);
-    }
+    public void removeUser(Bookster db, String username){ userService.removeUser(db, username);}
 
-    public void printUsersDetails(Bookster db){
-        userService.printUsersDetails(db);
-    }
+    public void addPersonToCompany(Person person, Company company){ userService.addPersonToCompany(person, company);}
+
+
+    public void printUsersDetails(Bookster db){ userService.printUsersDetails(db);}
+
 
     public void printFirstCompanyWithExpiredSubscription(Bookster db){ userService.printFirstCompanyWithExpiredSubscription(db);}
 
-    public void addBook(Bookster db, Book book){
-        bookService.addBook(db, book);
-    }
+    public void addBook(Bookster db, Book book){ bookService.addBook(db, book);}
 
-    public void printBooksDetails(Bookster db){
-        bookService.printBooksDetails(db);
-    }
 
-    public void searchBookByGenre(Bookster db, String genre){
-        bookService.searchBookByGenre(db, genre);
-    }
+    public void removeBook(Bookster db, String bookTitle){ bookService.removeBook(db, bookTitle);}
 
-    public void updateBookStock(Book book, int stock) {
-        bookService.updateBookStock(book, stock);
-    }
+    public void printBooksDetails(Bookster db){ bookService.printBooksDetails(db);}
 
-    public void rateBook(Bookster db, User user, String bookTitle, int rating){
-        bookService.rateBook(db, user, bookTitle, rating);
-    }
+    public void searchBookByGenre(Bookster db, String genre){ bookService.searchBookByGenre(db, genre);}
+
+    public void updateBookStock(Book book, int stock) { bookService.updateBookStock(book, stock);}
+
+    public void rateBook(Bookster db, User user, String bookTitle, int rating){ bookService.rateBook(db, user, bookTitle, rating);}
 
 
     // -------------------START PICKUP
@@ -77,14 +68,14 @@ public class Service {
         boolean inStock = false;
         String borrowedBookTitle = borrow.getBook().getTitle();
         int maxToBorrow = userService.getMaxToBorrow(db, borrow.getUser());
-        System.out.println(maxToBorrow);
+//        System.out.println(maxToBorrow);
         int nrBooksBorrowed = getNumberOfBorrowedBooksByUser(db, borrow.getUser());
 
         if(borrow.getUser() instanceof Company)
             System.out.println("You can't borrow books from a company's account");
         else
         if(nrBooksBorrowed == maxToBorrow)
-            System.out.println("You have reached the limit of books that you can borrow: " + maxToBorrow);
+            System.out.println("User: " + borrow.getUser().getUserName() + " reached the limit of books that he can borrow: " + maxToBorrow);
         else {
 
             for (Book b : db.getBooks()) {
@@ -102,6 +93,7 @@ public class Service {
                     break;
                 }
             }
+            System.out.println("User: " + borrow.getUser().getUserName() + " can borrow " + String.valueOf(maxToBorrow - nrBooksBorrowed - 1) + " more books!");
         }
     }
 

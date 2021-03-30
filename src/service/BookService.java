@@ -2,6 +2,7 @@ package service;
 
 import model.Book;
 import model.Bookster;
+import model.DigitalBook;
 import model.User;
 
 public class BookService {
@@ -54,6 +55,21 @@ public class BookService {
                 b.setNrRatings(nrRatings+1);
                 b.setUserRating(newRating);
             }
+    }
+
+    public void removeBook(Bookster db, String bookTitle){
+        int i = 0;
+        for(Book b : db.getBooks()) {
+            if (b != null && b.getTitle() == bookTitle) {
+                for (int j = i + 1; j < getNumberOfBooks(db); ++j)
+                    db.getBooks()[j - 1] = db.getBooks()[j];
+                db.getBooks()[getNumberOfBooks(db) - 1] = null;
+                break;
+            }
+
+            i++;
+        }
+
     }
 
 }

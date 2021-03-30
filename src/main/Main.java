@@ -30,6 +30,8 @@
         - actualizare stoc carte
         - actualizare adresa pickuppoint
         - cautare carti dupa gen
+        - stergere carte
+        - stergere user
 */
 package main;
 import model.*;
@@ -52,38 +54,77 @@ public class Main {
         service.addPickUpPoint(db, pickUpUnirii);
 
         User user1 = new Person("mihai", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
+        User user2 = new Person("andrei", "1111", "andrei@yahoo.com","Andrei", "Vasile", "Str. Unibuc2", "0777777777");
         service.addUser(db, user1);
+        service.addUser(db, user2);
 
         User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], bronzeSubscription);
         User userTesla = new Company("tesla_books", "5555", "tesla@gmail.com", "Tesla", "Str. Tesla", new Person[50], goldSubscription);
         service.addUser(db, userTesla);
         service.addUser(db, userGoogle);
         service.addPersonToCompany((Person)user1, (Company)userGoogle);
+        service.addPersonToCompany((Person) user2, (Company) userTesla);
+
+        System.out.println("Afisare useri");
         service.printUsersDetails(db);
+        System.out.println();
 
         Book book1 = new PhysicalBook("Crime and Punishment", "Dostoevsky", 500, "mystery",1866,2,"Hard",true);
         Book book2 = new DigitalBook("The Metamorphosis", "Kafka", 100, "fiction", 1915, 10, ".pdf", true);
         service.addBook(db, book1);
         service.addBook(db, book2);
+
+        System.out.println("Inainte si dupa actualizare stoc");
         service.printBooksDetails(db);
         service.updateBookStock(book1, 5);
         service.printBooksDetails(db);
-        Borrow borrow1 = new Borrow(user1, book1);
-        service.addBorrow(db, borrow1);
+        System.out.println();
 
-//        service.addBorrow(db, borrow1);
+        Borrow borrow1 = new Borrow(user1, book1);
+        Borrow borrow2 = new Borrow(user1, book2);
+        Borrow borrow3 = new Borrow(user2, book2);
+        Borrow borrow4 = new Borrow(userGoogle, book2);
+        System.out.println("Borrow");
+        service.addBorrow(db, borrow1);
+        service.addBorrow(db, borrow2);
+        service.addBorrow(db, borrow3);
+        service.addBorrow(db,borrow4);
+        System.out.println("Afisare imprumuturi si modificarile din stoc");
         service.printBorrowDetails(db);
         service.printBooksDetails(db);
+        System.out.println();
 
+        System.out.println("Actualizare adresa pickup");
         service.updatePickUpPointAddress(pickUpUnirii, "Str. Unirii2");
         service.printPickUpPoints(db);
+        System.out.println();
 
+        System.out.println("Afisare carti dintr-un anumit gen");
         service.searchBookByGenre(db, "mystery");
+        System.out.println();
 
-        service.rateBook(db, user1, "Crime and Punishment", 5);
-        service.rateBook(db, userGoogle, "Crime and Punishment", 4);
+        System.out.println("Afisare carte inainte si dupa ce userul acorda rating");
         service.printBooksDetails(db);
+        service.rateBook(db, user1, "Crime and Punishment", 5);
+        service.rateBook(db, user2, "Crime and Punishment", 4);
+        service.printBooksDetails(db);
+        System.out.println();
+
+        System.out.println("Afisarea companiei careia ii expira cel mai repede abonamentul");
         service.printFirstCompanyWithExpiredSubscription(db);
+        System.out.println();
+
+        System.out.println("Stergere carte");
+        service.printBooksDetails(db);
+        service.removeBook(db, "The Metamorphosis");
+        service.printBooksDetails(db);
+        System.out.println();
+
+        System.out.println("Stergere user");
+        service.printUsersDetails(db);
+        service.removeUser(db, "andrei");
+        service.removeUser(db, "tesla_books");
+        service.printUsersDetails(db);
 
         // ---------------------MENU-----------------------
         /*while(true){
