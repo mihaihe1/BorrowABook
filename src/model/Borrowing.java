@@ -1,29 +1,23 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
-public class Borrow {
+
+public class Borrowing {
     private User user;
     private Book book;
-    private final Date startingDate;
-    private final Date endingDate;
+    private final LocalDate startingDate;
+    private final LocalDate endingDate;
 
-    public Borrow(User user, Book book){
+    public Borrowing(User user, Book book){
         this.user = user;
         this.book = book;
 
         SimpleDateFormat formatter1= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        this.startingDate = new Date(System.currentTimeMillis());
-
-        Date d = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(d);
-        c.add(Calendar.DATE, 30);
-        Date currentDatePlusMonth = c.getTime();
-
-        this.endingDate = currentDatePlusMonth;
+        this.startingDate = LocalDate.now();
+        this.endingDate = startingDate.plusDays(30);
     }
 
     public User getUser() {
@@ -42,11 +36,11 @@ public class Borrow {
         this.book = book;
     }
 
-    public Date getStartingDate() {
+    public LocalDate getStartingDate() {
         return startingDate;
     }
 
-    public Date getEndingDate() {
+    public LocalDate getEndingDate() {
         return endingDate;
     }
 

@@ -32,7 +32,7 @@ public class DigitalBook extends Book{
 
     @Override
     public String toString(){
-        if(freeTrial == true)
+        if(freeTrial)
             return super.toString() + " / " + format + " / " + freeTrial + " / " + freeTrialLength;
 
         return super.toString() + " / " + format + " / " + freeTrial;

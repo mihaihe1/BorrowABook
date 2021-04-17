@@ -1,13 +1,13 @@
 package model;
 
-public abstract class Book extends Object {
+public abstract class Book {
     private String title;
     private String author;
     private int pageNumber;
     private String genre;
     private int publicationYear;
-    private double userRating = 0;
-    private int nrRatings = 0;
+    private double userRating;
+    private int nrRatings;
     private int stock;
 
     public Book(String title, String author, int pageNumber, String genre, int publicationYear, int stock){
