@@ -38,7 +38,7 @@ public class BookService {
         boolean ok = false;
 
         for(Book b : db.getBooks())
-            if(b != null && b.getGenre() == genre){
+            if(b != null && b.getGenre().equals(genre)){
                 System.out.println(b);
                 ok = true;
             }
@@ -48,7 +48,7 @@ public class BookService {
 
     public void rateBook(Bookster db, User user, String bookTitle, int rating){
         for(Book b : db.getBooks())
-            if(b != null && b.getTitle() == bookTitle){
+            if(b != null && b.getTitle().equals(bookTitle)){
                 double ratingActual = b.getUserRating();
                 int nrRatings = b.getNrRatings();
                 double newRating = ((ratingActual * nrRatings) + rating) / (nrRatings+1);
@@ -60,7 +60,7 @@ public class BookService {
     public void removeBook(Bookster db, String bookTitle){
         int i = 0;
         for(Book b : db.getBooks()) {
-            if (b != null && b.getTitle() == bookTitle) {
+            if (b != null && b.getTitle().equals(bookTitle)) {
                 for (int j = i + 1; j < getNumberOfBooks(db); ++j)
                     db.getBooks()[j - 1] = db.getBooks()[j];
                 db.getBooks()[getNumberOfBooks(db) - 1] = null;

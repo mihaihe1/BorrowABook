@@ -5,7 +5,7 @@ public class Bookster{
     private User[] users = new User[20];
     private Company[] companies = new Company[10];
     private PickUpPoint[] pickUpPoints = new PickUpPoint[10];
-    private Borrow[] borrows = new Borrow[20];
+    private Borrowing[] borrowings = new Borrowing[20];
 
     public Book[] getBooks() {
         return books;
@@ -31,12 +31,12 @@ public class Bookster{
         this.companies = companies;
     }
 
-    public Borrow[] getBorrows() {
-        return borrows;
+    public Borrowing[] getBorrows() {
+        return borrowings;
     }
 
-    public void setBorrows(Borrow[] borrows) {
-        this.borrows = borrows;
+    public void setBorrows(Borrowing[] borrowings) {
+        this.borrowings = borrowings;
     }
 
     public PickUpPoint[] getPickUpPoints() {

@@ -4,13 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Borrow {
+public class Borrowing {
     private User user;
     private Book book;
     private final Date startingDate;
     private final Date endingDate;
 
-    public Borrow(User user, Book book){
+    public Borrowing(User user, Book book){
         this.user = user;
         this.book = book;
 

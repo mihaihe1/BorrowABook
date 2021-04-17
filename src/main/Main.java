@@ -37,7 +37,6 @@ package main;
 import model.*;
 import service.*;
 
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Main {
@@ -80,17 +79,17 @@ public class Main {
         service.printBooksDetails(db);
         System.out.println();
 
-        Borrow borrow1 = new Borrow(user1, book1);
-        Borrow borrow2 = new Borrow(user1, book2);
-        Borrow borrow3 = new Borrow(user2, book2);
-        Borrow borrow4 = new Borrow(userGoogle, book2);
+        Borrowing borrowing1 = new Borrowing(user1, book1);
+        Borrowing borrowing2 = new Borrowing(user1, book2);
+        Borrowing borrowing3 = new Borrowing(user2, book2);
+        Borrowing borrowing4 = new Borrowing(userGoogle, book2);
         System.out.println("Borrow");
-        service.addBorrow(db, borrow1);
-        service.addBorrow(db, borrow2);
-        service.addBorrow(db, borrow3);
-        service.addBorrow(db,borrow4);
+        service.addBorrowing(db, borrowing1);
+        service.addBorrowing(db, borrowing2);
+        service.addBorrowing(db, borrowing3);
+        service.addBorrowing(db, borrowing4);
         System.out.println("Afisare imprumuturi si modificarile din stoc");
-        service.printBorrowDetails(db);
+        service.printBorrowingDetails(db);
         service.printBooksDetails(db);
         System.out.println();
 
@@ -192,6 +191,7 @@ public class Main {
                     break;
 
                 default : System.out.println("This command doesn't exist.");
+
 
 
             }

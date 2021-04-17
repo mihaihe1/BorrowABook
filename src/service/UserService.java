@@ -48,7 +48,7 @@ public class UserService {
             if(u instanceof Company){
                 Person[] employeeList = ((Company) u).getEmployees();
                 for(Person p : employeeList)
-                    if(p != null && p.getUserName() == user.getUserName())
+                    if(p != null && p.getUserName().equals(user.getUserName()))
                         return ((Company) u).getSubscription().getMaxNumberToBorrow();
             }
 
