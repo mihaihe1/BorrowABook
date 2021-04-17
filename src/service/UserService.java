@@ -2,8 +2,8 @@ package service;
 
 import model.*;
 
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 public class UserService {
 
@@ -56,13 +56,11 @@ public class UserService {
     }
 
     public void printFirstCompanyWithExpiredSubscription(Bookster db){
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(2022, Calendar.JANUARY, 0);
-        Date date = calendar.getTime();
+        LocalDate date = LocalDate.of(2022, 1, 1);
         String companyName = "";
 
         for(User u : db.getUsers())
-            if (u instanceof Company && ((Company) u).getSubscription().getExpirationDate().before(date)){
+            if (u instanceof Company && ((Company) u).getSubscription().getExpirationDate().compareTo(date) < 0){
                 date = ((Company)u).getSubscription().getExpirationDate();
                 companyName = ((Company)u).getCompanyName();
             }

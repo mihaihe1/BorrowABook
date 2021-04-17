@@ -1,13 +1,13 @@
 package model;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Subscription {
     private String subscriptionType;
     private int maxNumberToBorrow;
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     public Subscription(String subscriptionType){
         this.subscriptionType = subscriptionType;
@@ -29,14 +29,7 @@ public class Subscription {
                 break;
         }
 
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date d = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(d);
-        c.add(Calendar.DATE, 30);
-        Date currentDatePlusMonth = c.getTime();
-
-        this.expirationDate = currentDatePlusMonth;
+        this.expirationDate = LocalDate.now().plusDays(30);
     }
 
     public String getSubscriptionType() {
@@ -55,11 +48,11 @@ public class Subscription {
         this.maxNumberToBorrow = maxNumberToBorrow;
     }
 
-    public Date getExpirationDate() {
+    public LocalDate getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
     }
 }
