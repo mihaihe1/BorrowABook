@@ -1,49 +1,52 @@
 package model;
 
-public class Bookster{
-    private Book[] books = new Book[30];
-    private User[] users = new User[20];
-    private Company[] companies = new Company[10];
-    private PickUpPoint[] pickUpPoints = new PickUpPoint[10];
-    private Borrowing[] borrowings = new Borrowing[20];
+import java.util.ArrayList;
+import java.util.List;
 
-    public Book[] getBooks() {
+public class Bookster{
+    private List<Book> books = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
+    private List<Company> companies = new ArrayList<>();
+    private List<PickUpPoint> pickUpPoints = new ArrayList<>();
+    private List<Borrowing> borrowings = new ArrayList<>();
+
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(Book[] books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(User[] users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
-    public Company[] getCompanies() {
+    public List<Company> getCompanies() {
         return companies;
     }
 
-    public void setCompanies(Company[] companies) {
+    public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
 
-    public Borrowing[] getBorrows() {
+    public List<Borrowing> getBorrows() {
         return borrowings;
     }
 
-    public void setBorrows(Borrowing[] borrowings) {
+    public void setBorrows(List<Borrowing> borrowings) {
         this.borrowings = borrowings;
     }
 
-    public PickUpPoint[] getPickUpPoints() {
+    public List<PickUpPoint> getPickUpPoints() {
         return pickUpPoints;
     }
 
-    public void setPickUpPoints(PickUpPoint[] pickUpPoints) {
+    public void setPickUpPoints(List<PickUpPoint> pickUpPoints) {
         this.pickUpPoints = pickUpPoints;
     }
 }

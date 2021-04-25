@@ -8,8 +8,7 @@ import model.User;
 public class BookService {
 
     public void addBook(Bookster db, Book book){
-        int nextAvailableIndex = getNumberOfBooks(db);
-        db.getBooks()[nextAvailableIndex] = book;
+        db.getBooks().add(book);
     }
 
     public int getNumberOfBooks(Bookster db){
@@ -58,18 +57,12 @@ public class BookService {
     }
 
     public void removeBook(Bookster db, String bookTitle){
-        int i = 0;
         for(Book b : db.getBooks()) {
             if (b != null && b.getTitle().equals(bookTitle)) {
-                for (int j = i + 1; j < getNumberOfBooks(db); ++j)
-                    db.getBooks()[j - 1] = db.getBooks()[j];
-                db.getBooks()[getNumberOfBooks(db) - 1] = null;
+                db.getBooks().remove(b);
                 break;
             }
-
-            i++;
         }
-
     }
 
 }

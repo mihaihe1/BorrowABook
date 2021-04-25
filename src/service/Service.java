@@ -7,44 +7,85 @@ public class Service {
     private final UserService userService = new UserService();
     private final PickUpPointService pickUpPointService = new PickUpPointService();
     private final BorrowingService borrowingService = new BorrowingService();
+    private final LoggingService loggingService = new LoggingService();
 
-    public void addUser(Bookster db, User user){ userService.addUser(db, user); }
+    public void addUser(Bookster db, User user){ userService.addUser(db, user); loggingService.logEvent("add user");}
 
-    public void removeUser(Bookster db, String username){ userService.removeUser(db, username);}
+    public void removeUser(Bookster db, String username){ userService.removeUser(db, username); loggingService.logEvent("remove user");}
 
-    public void addPersonToCompany(Person person, Company company){ userService.addPersonToCompany(person, company);}
+    public void addPersonToCompany(Person person, Company company){
+        userService.addPersonToCompany(person, company);
+        loggingService.logEvent("add person to company");
+    }
 
-    public void printUsersDetails(Bookster db){ userService.printUsersDetails(db);}
+    public void printUsersDetails(Bookster db){
+        userService.printUsersDetails(db);
+        loggingService.logEvent("print users");
+    }
 
-    public void printFirstCompanyWithExpiredSubscription(Bookster db){ userService.printFirstCompanyWithExpiredSubscription(db);}
-
-
-
-    public void addBook(Bookster db, Book book){ bookService.addBook(db, book);}
-
-    public void removeBook(Bookster db, String bookTitle){ bookService.removeBook(db, bookTitle);}
-
-    public void printBooksDetails(Bookster db){ bookService.printBooksDetails(db);}
-
-    public void searchBookByGenre(Bookster db, String genre){ bookService.searchBookByGenre(db, genre);}
-
-    public void updateBookStock(Book book, int stock) { bookService.updateBookStock(book, stock);}
-
-    public void rateBook(Bookster db, User user, String bookTitle, int rating){ bookService.rateBook(db, user, bookTitle, rating);}
+    public void printFirstCompanyWithExpiredSubscription(Bookster db){
+        userService.printFirstCompanyWithExpiredSubscription(db);
+        loggingService.logEvent("print first company with expired sub");
+    }
 
 
 
-    public void addPickUpPoint(Bookster db, PickUpPoint pickUpPoint){ pickUpPointService.addPickUpPoint(db, pickUpPoint);}
+    public void addBook(Bookster db, Book book){
+        bookService.addBook(db, book);
+        loggingService.logEvent("add book");
+    }
 
-    public void printPickUpPoints(Bookster db){ pickUpPointService.printPickUpPoints(db);}
+    public void removeBook(Bookster db, String bookTitle){
+        bookService.removeBook(db, bookTitle);
+        loggingService.logEvent("remove book");
+    }
 
-    public void updatePickUpPointAddress(PickUpPoint pickUpPoint, String address){ pickUpPoint.setAddress(address);}
+    public void printBooksDetails(Bookster db){
+        bookService.printBooksDetails(db);
+        loggingService.logEvent("print books");
+    }
+
+    public void searchBookByGenre(Bookster db, String genre){
+        bookService.searchBookByGenre(db, genre);
+        loggingService.logEvent("search books by user");
+    }
+
+    public void updateBookStock(Book book, int stock) {
+        bookService.updateBookStock(book, stock);
+        loggingService.logEvent("update book stock");
+    }
+
+    public void rateBook(Bookster db, User user, String bookTitle, int rating){
+        bookService.rateBook(db, user, bookTitle, rating);
+        loggingService.logEvent("rate book");
+    }
 
 
-    public void addBorrowing(Bookster db, Borrowing borrowing){ borrowingService.addBorrowing(db, borrowing);}
 
-    public void printBorrowingDetails(Bookster db){ borrowingService.printBorrowingDetails(db);}
+    public void addPickUpPoint(Bookster db, PickUpPoint pickUpPoint){
+        pickUpPointService.addPickUpPoint(db, pickUpPoint);
+        loggingService.logEvent("add pick up point");
+    }
+
+    public void printPickUpPoints(Bookster db){
+        pickUpPointService.printPickUpPoints(db);
+        loggingService.logEvent("print pick up points");
+    }
+
+    public void updatePickUpPointAddress(PickUpPoint pickUpPoint, String address){
+        pickUpPoint.setAddress(address);
+        loggingService.logEvent("update pick up point");
+    }
 
 
+    public void addBorrowing(Bookster db, Borrowing borrowing){
+        borrowingService.addBorrowing(db, borrowing);
+        loggingService.logEvent("add borrowing");
+    }
+
+    public void printBorrowingDetails(Bookster db){
+        borrowingService.printBorrowingDetails(db);
+        loggingService.logEvent("print borrowings");
+    }
 
 }

@@ -24,8 +24,7 @@ public class BorrowingService {
                     if (stock > 0) {
 //                        inStock = true;
                         updateBookStock(b, stock - 1);
-                        int nextAvailableIndex = getNumberOfBorrowings(db);
-                        db.getBorrows()[nextAvailableIndex] = borrowing;
+                        db.getBorrows().add(borrowing);
                     } else {
                         System.out.println("This book is out of stock!");
                     }

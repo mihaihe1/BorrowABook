@@ -41,10 +41,10 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args){
+
         Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
-
 
         Subscription bronzeSubscription = new Subscription("bronze");
         Subscription silverSubscription = new Subscription("silver");

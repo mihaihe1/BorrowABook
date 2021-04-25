@@ -5,8 +5,7 @@ import model.PickUpPoint;
 
 public class PickUpPointService {
     public void addPickUpPoint(Bookster db, PickUpPoint pickUpPoint){
-        int nextAvailableIndex = getNumberOfPickUpPoints(db);
-        db.getPickUpPoints()[nextAvailableIndex] = pickUpPoint;
+        db.getPickUpPoints().add(pickUpPoint);
     }
 
     public int getNumberOfPickUpPoints(Bookster db){

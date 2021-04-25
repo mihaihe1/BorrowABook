@@ -8,8 +8,7 @@ import java.util.Calendar;
 public class UserService {
 
     public void addUser(Bookster db, User user){
-        int nextAvailableIndex = getNumberOfUsers(db);
-        db.getUsers()[nextAvailableIndex] = user;
+        db.getUsers().add(user);
     }
 
     public void addPersonToCompany(Person person, Company company){
@@ -69,17 +68,11 @@ public class UserService {
     }
 
     public void removeUser(Bookster db, String username){
-        int i = 0;
         for(User u : db.getUsers()) {
             if (u != null && u.getUserName().equals(username)) {
-                for (int j = i + 1; j < getNumberOfUsers(db); ++j)
-                    db.getUsers()[j - 1] = db.getUsers()[j];
-                db.getUsers()[getNumberOfUsers(db) - 1] = null;
+                db.getUsers().remove(u);
                 break;
             }
-
-            i++;
         }
-
     }
 }
