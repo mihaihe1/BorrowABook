@@ -9,6 +9,29 @@ public class Bookster{
     private List<Company> companies = new ArrayList<>();
     private List<PickUpPoint> pickUpPoints = new ArrayList<>();
     private List<Borrowing> borrowings = new ArrayList<>();
+    private List<Subscription> subscriptions = new ArrayList<>();
+
+    public Bookster(){
+        subscriptions.add(new Subscription("bronze"));
+        subscriptions.add(new Subscription("silver"));
+        subscriptions.add(new Subscription("gold"));
+    }
+
+    public List<Borrowing> getBorrowings() {
+        return borrowings;
+    }
+
+    public void setBorrowings(List<Borrowing> borrowings) {
+        this.borrowings = borrowings;
+    }
+
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
 
     public List<Book> getBooks() {
         return books;

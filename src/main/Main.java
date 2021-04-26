@@ -36,6 +36,10 @@
 package main;
 import model.*;
 import service.*;
+import service.RWServices.RWCompany;
+import service.RWServices.RWDigitalBook;
+import service.RWServices.RWPhysicalBook;
+import service.RWServices.RWPerson;
 
 import java.util.*;
 
@@ -45,23 +49,28 @@ public class Main {
         Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
+        RWPerson rwPerson = RWPerson.getInstance();
+        rwPerson.read(db, service);
+        RWPhysicalBook rwPhysicalBook = RWPhysicalBook.getInstance();
+        rwPhysicalBook.read(db, service);
+        RWDigitalBook rwDigitalBook = RWDigitalBook.getInstance();
+        rwDigitalBook.read(db, service);
+        RWCompany rwCompany = RWCompany.getInstance();
+        rwCompany.read(db, service);
 
-        Subscription bronzeSubscription = new Subscription("bronze");
-        Subscription silverSubscription = new Subscription("silver");
-        Subscription goldSubscription = new Subscription("gold");
         PickUpPoint pickUpUnirii = new PickUpPoint("Bucharest", "Str. Unirii", true);
         service.addPickUpPoint(db, pickUpUnirii);
 
-        User user1 = new Person("mihai", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
+//        User user1 = new Person("mihai", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
         User user2 = new Person("andrei", "1111", "andrei@yahoo.com","Andrei", "Vasile", "Str. Unibuc2", "0777777777");
-        service.addUser(db, user1);
+//        service.addUser(db, user1);
         service.addUser(db, user2);
 
-        User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], bronzeSubscription);
-        User userTesla = new Company("tesla_books", "5555", "tesla@gmail.com", "Tesla", "Str. Tesla", new Person[50], goldSubscription);
+        User userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], db.getSubscriptions().get(0));
+        User userTesla = new Company("tesla_books", "5555", "tesla@gmail.com", "Tesla", "Str. Tesla", new Person[50], db.getSubscriptions().get(2));
         service.addUser(db, userTesla);
         service.addUser(db, userGoogle);
-        service.addPersonToCompany((Person)user1, (Company)userGoogle);
+//        service.addPersonToCompany((Person)user1, (Company)userGoogle);
         service.addPersonToCompany((Person) user2, (Company) userTesla);
 
         System.out.println("Afisare useri");
@@ -79,13 +88,13 @@ public class Main {
         service.printBooksDetails(db);
         System.out.println();
 
-        Borrowing borrowing1 = new Borrowing(user1, book1);
-        Borrowing borrowing2 = new Borrowing(user1, book2);
+//        Borrowing borrowing1 = new Borrowing(user1, book1);
+//        Borrowing borrowing2 = new Borrowing(user1, book2);
         Borrowing borrowing3 = new Borrowing(user2, book2);
         Borrowing borrowing4 = new Borrowing(userGoogle, book2);
         System.out.println("Borrow");
-        service.addBorrowing(db, borrowing1);
-        service.addBorrowing(db, borrowing2);
+//        service.addBorrowing(db, borrowing1);
+//        service.addBorrowing(db, borrowing2);
         service.addBorrowing(db, borrowing3);
         service.addBorrowing(db, borrowing4);
         System.out.println("Afisare imprumuturi si modificarile din stoc");
@@ -104,7 +113,7 @@ public class Main {
 
         System.out.println("Afisare carte inainte si dupa ce userul acorda rating");
         service.printBooksDetails(db);
-        service.rateBook(db, user1, "Crime and Punishment", 5);
+//        service.rateBook(db, user1, "Crime and Punishment", 5);
         service.rateBook(db, user2, "Crime and Punishment", 4);
         service.printBooksDetails(db);
         System.out.println();
@@ -115,15 +124,20 @@ public class Main {
 
         System.out.println("Stergere carte");
         service.printBooksDetails(db);
-        service.removeBook(db, "The Metamorphosis");
+//        service.removeBook(db, "The Metamorphosis");
         service.printBooksDetails(db);
         System.out.println();
 
         System.out.println("Stergere user");
         service.printUsersDetails(db);
-        service.removeUser(db, "andrei");
+//        service.removeUser(db, "andrei");
         service.removeUser(db, "tesla_books");
         service.printUsersDetails(db);
+
+        rwPerson.write(db.getUsers());
+        rwPhysicalBook.write(db.getBooks());
+        rwDigitalBook.write(db.getBooks());
+        rwCompany.write(db.getUsers());
 
         // ---------------------MENU-----------------------
         /*while(true){
