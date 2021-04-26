@@ -75,4 +75,18 @@ public class UserService {
             }
         }
     }
+
+    public Person searchPerson(Bookster db, String username){
+        for(User u: db.getUsers())
+            if (u != null && u.getUserName().equals(username) && u instanceof Person)
+                return (Person) u;
+        return null;
+    }
+
+    public Company searchCompany(Bookster db, String username){
+        for(User u: db.getUsers())
+            if (u != null && u.getUserName().equals(username) && u instanceof Company)
+                return (Company) u;
+        return null;
+    }
 }

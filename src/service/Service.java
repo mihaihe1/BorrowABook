@@ -13,6 +13,10 @@ public class Service {
 
     public void removeUser(Bookster db, String username){ userService.removeUser(db, username); loggingService.logEvent("remove user");}
 
+    public Person searchPerson(Bookster db, String username){ Person p = userService.searchPerson(db, username); loggingService.logEvent("search person"); return p;}
+
+    public Company searchCompany(Bookster db, String username){ Company c = userService.searchCompany(db, username); loggingService.logEvent("search company"); return c;}
+
     public void addPersonToCompany(Person person, Company company){
         userService.addPersonToCompany(person, company);
         loggingService.logEvent("add person to company");
