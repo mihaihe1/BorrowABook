@@ -24,7 +24,7 @@ public class BorrowingService {
                     if (stock > 0) {
 //                        inStock = true;
                         updateBookStock(b, stock - 1);
-                        db.getBorrows().add(borrowing);
+                        db.getBorrowings().add(borrowing);
                     } else {
                         System.out.println("This book is out of stock!");
                     }
@@ -38,7 +38,7 @@ public class BorrowingService {
     public int getNumberOfBorrowedBooksByUser(Bookster db, User user){
         int nrBooks = 0;
         String username = user.getUserName();
-        for(Borrowing b : db.getBorrows())
+        for(Borrowing b : db.getBorrowings())
             if (b != null && b.getUser().getUserName().equals(username))
                 nrBooks++;
 
@@ -47,7 +47,7 @@ public class BorrowingService {
 
     public int getNumberOfBorrowings(Bookster db){
         int nrP = 0;
-        for(Borrowing p : db.getBorrows()){
+        for(Borrowing p : db.getBorrowings()){
             if(p != null){
                 nrP++;
             }
@@ -56,7 +56,7 @@ public class BorrowingService {
     }
 
     public void printBorrowingDetails(Bookster db){
-        for(Borrowing b : db.getBorrows()){
+        for(Borrowing b : db.getBorrowings()){
             if(b != null)
                 System.out.println(b);
         }

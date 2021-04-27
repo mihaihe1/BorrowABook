@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Book {
+public abstract class Book implements Comparable<Book>{
     private String title;
     private String author;
     private int pageNumber;
@@ -86,5 +86,11 @@ public abstract class Book {
     @Override
     public String toString(){
         return title + " / " + author + " / " + pageNumber + " / " + genre + " / " + publicationYear + " / " + userRating + " / " + stock;
+    }
+
+    @Override
+    public int compareTo(Book b){
+        return Integer.compare(this.getPublicationYear(), b.getPublicationYear());
+
     }
 }

@@ -11,6 +11,7 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
+import java.util.Set;
 
 public class RWPhysicalBook {
     private static final String DIRECTORY_PATH = "resources/data";
@@ -52,7 +53,7 @@ public class RWPhysicalBook {
         }
     }
 
-    public void write(List<Book> books) {
+    public void write(Set<Book> books) {
         if(!Files.exists(Paths.get(DIRECTORY_PATH))) {
             try {
                 Files.createDirectories(Paths.get(DIRECTORY_PATH));

@@ -89,4 +89,12 @@ public class UserService {
                 return (Company) u;
         return null;
     }
+
+    public User searchUser(Bookster db, String username){
+        for(User u: db.getUsers())
+            if (u != null && u.getUserName().equals(username))
+                return u;
+        return null;
+    }
+
 }

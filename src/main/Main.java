@@ -56,8 +56,9 @@ public class Main {
         rwCompany.read(db, service);
         RWPickUpPoint rwPickUpPoint = RWPickUpPoint.getInstance();
         rwPickUpPoint.read(db, service);
+        RWBorrowing rwBorrowing = RWBorrowing.getInstance();
+        rwBorrowing.read(db, service);
 
-//        service.addPersonToCompany((Person)user1, (Company)userGoogle);
 //        service.addPersonToCompany((Person) user2, (Company) userTesla);
 
 
@@ -67,7 +68,14 @@ public class Main {
 //        service.printBooksDetails(db);
 //        System.out.println();
 //
-////        Borrowing borrowing1 = new Borrowing(user1, book1);
+        User user1 = new Person("mihai_test", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
+        Book book1 = new PhysicalBook("Crime and Punishment", "Dostoevsky", 500, "mystery",1866,2,"Hard",true);
+        User userGoogle = new Company("google_bookster_test", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], db.getSubscriptions().get(0));
+        service.addUser(db, user1);
+        service.addUser(db, userGoogle);
+        service.addPersonToCompany((Person)user1, (Company)userGoogle);
+        Borrowing borrowing1 = new Borrowing(user1, book1);
+        service.addBorrowing(db, borrowing1);
 ////        Borrowing borrowing2 = new Borrowing(user1, book2);
 //        Borrowing borrowing3 = new Borrowing(user2, book2);
 //        Borrowing borrowing4 = new Borrowing(userGoogle, book2);
@@ -276,6 +284,7 @@ public class Main {
                     rwDigitalBook.write(db.getBooks());
                     rwCompany.write(db.getUsers());
                     rwPickUpPoint.write(db.getPickUpPoints());
+                    rwBorrowing.write(db.getBorrowings());
                     System.out.println("Bye bye!");
                     System.exit(0);
                     break;

@@ -17,6 +17,8 @@ public class Service {
 
     public Company searchCompany(Bookster db, String username){ Company c = userService.searchCompany(db, username); loggingService.logEvent("search company"); return c;}
 
+    public User searchUser(Bookster db, String username){ User u = userService.searchUser(db, username); loggingService.logEvent("search user"); return u;}
+
     public void addPersonToCompany(Person person, Company company){
         userService.addPersonToCompany(person, company);
         loggingService.logEvent("add person to company");
@@ -51,7 +53,7 @@ public class Service {
 
     public void searchBookByGenre(Bookster db, String genre){
         bookService.searchBookByGenre(db, genre);
-        loggingService.logEvent("search books by user");
+        loggingService.logEvent("search book by genre");
     }
 
     public void updateBookStock(Book book, int stock) {
@@ -64,7 +66,11 @@ public class Service {
         loggingService.logEvent("rate book");
     }
 
-
+    public Book searchBook(Bookster db, String bookTitle){
+        Book b = bookService.searchBook(db, bookTitle);
+        loggingService.logEvent("search book");
+        return b;
+    }
 
     public void addPickUpPoint(Bookster db, PickUpPoint pickUpPoint){
         pickUpPointService.addPickUpPoint(db, pickUpPoint);

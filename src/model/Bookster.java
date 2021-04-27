@@ -2,9 +2,11 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Bookster{
-    private List<Book> books = new ArrayList<>();
+    private Set<Book> books = new TreeSet<>();
     private List<User> users = new ArrayList<>();
     private List<Company> companies = new ArrayList<>();
     private List<PickUpPoint> pickUpPoints = new ArrayList<>();
@@ -33,11 +35,11 @@ public class Bookster{
         this.subscriptions = subscriptions;
     }
 
-    public List<Book> getBooks() {
+    public Set<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(Set<Book> books) {
         this.books = books;
     }
 
@@ -55,14 +57,6 @@ public class Bookster{
 
     public void setCompanies(List<Company> companies) {
         this.companies = companies;
-    }
-
-    public List<Borrowing> getBorrows() {
-        return borrowings;
-    }
-
-    public void setBorrows(List<Borrowing> borrowings) {
-        this.borrowings = borrowings;
     }
 
     public List<PickUpPoint> getPickUpPoints() {

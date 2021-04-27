@@ -10,41 +10,44 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
-public class RWDigitalBook {
+public class RWBorrowing {
     private static final String DIRECTORY_PATH = "resources/data";
-    private static final String FILE_PATH = DIRECTORY_PATH + "/digitalbook.csv";
-    private static final RWDigitalBook INSTANCE = new RWDigitalBook();
+    private static final String FILE_PATH = DIRECTORY_PATH + "/borrowing.csv";
+    private static final RWBorrowing INSTANCE = new RWBorrowing();
 
-    private RWDigitalBook() {
+    private RWBorrowing() {
 
     }
 
-    public static RWDigitalBook getInstance() {
+    public static RWBorrowing getInstance() {
         return INSTANCE;
     }
 
     public void read(Bookster db, Service service) {
         try {
-//            String title, String author, int pageNumber, String genre, int publicationYear, int stock, String format, boolean freeTrial
             BufferedReader reader = Files.newBufferedReader(Paths.get(FILE_PATH));
             String line = "";
             line = reader.readLine();
             while((line = reader.readLine()) != null) {
                 String[] arr = line.split(",");
-                String title = arr[0];
-                String author = arr[1];
-                int pageNumber = Integer.parseInt(arr[2]);
-                String genre = arr[3];
-                int publicationYear = Integer.parseInt(arr[4]);
-                int stock = Integer.parseInt(arr[5]);
-                String format = arr[6];
-                boolean freeTrial = Boolean.parseBoolean(arr[7]);
+                String username = arr[0];
+                String bookTitle = arr[1];
+                User u = service.searchUser(db, username);
+                if (u == null){
+                    System.out.println("The user doesn't exist");
+                    return;
+                }
+                Book b = service.searchBook(db, bookTitle);
+                if (b == null){
+                    System.out.println("The book doesn't exist");
+                    return;
+                }
 
-                Book book = new DigitalBook(title, author, pageNumber, genre, publicationYear, stock, format, freeTrial);
-                service.addBook(db, book);
+                Borrowing borrowing = new Borrowing(u, b);
+                service.addBorrowing(db, borrowing);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");
@@ -54,7 +57,7 @@ public class RWDigitalBook {
         }
     }
 
-    public void write(Set<Book> books) {
+    public void write(List<Borrowing> borrowings) {
         if(!Files.exists(Paths.get(DIRECTORY_PATH))) {
             try {
                 Files.createDirectories(Paths.get(DIRECTORY_PATH));
@@ -73,13 +76,10 @@ public class RWDigitalBook {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get(FILE_PATH),
                     StandardOpenOption.TRUNCATE_EXISTING);
 
-            writer.write("title,author,page number,genre,publication year,stock,format,free trial\n");
+            writer.write("username,book title, starting date, ending date\n");
             writer.flush();
-            for (Book book : books)
-                if (book instanceof DigitalBook){
-                    writer.write(book.getTitle() + "," + book.getAuthor() + "," + book.getPageNumber() + "," +
-                            book.getGenre() + "," + book.getPublicationYear() + "," + book.getStock() + "," + ((DigitalBook) book).getFormat()
-                            +"," + ((DigitalBook) book).isFreeTrial() + "\n");
+            for (Borrowing b : borrowings){
+                    writer.write(b.getUser().getUserName() + "," + b.getBook().getTitle() + "," + b.getStartingDate() + "," + b.getEndingDate() + "\n");
                     writer.flush();
                 }
         } catch (IOException e) {

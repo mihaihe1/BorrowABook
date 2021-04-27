@@ -1,9 +1,6 @@
 package service;
 
-import model.Book;
-import model.Bookster;
-import model.DigitalBook;
-import model.User;
+import model.*;
 
 public class BookService {
 
@@ -63,6 +60,13 @@ public class BookService {
                 break;
             }
         }
+    }
+
+    public Book searchBook(Bookster db, String bookTitle) {
+        for(Book b: db.getBooks())
+            if (b != null && b.getTitle().equals(bookTitle))
+                return b;
+        return null;
     }
 
 }
