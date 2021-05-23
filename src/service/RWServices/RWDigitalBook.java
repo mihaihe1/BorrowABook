@@ -43,8 +43,8 @@ public class RWDigitalBook {
                 String format = arr[6];
                 boolean freeTrial = Boolean.parseBoolean(arr[7]);
 
-                Book book = new DigitalBook(title, author, pageNumber, genre, publicationYear, stock, format, freeTrial);
-                service.addBook(db, book);
+                DigitalBook book = new DigitalBook(title, author, pageNumber, genre, publicationYear, stock, format, freeTrial);
+//                service.addPhysicalBook(book);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");

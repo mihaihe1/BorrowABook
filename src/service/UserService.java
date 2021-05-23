@@ -1,14 +1,25 @@
 package service;
 
 import model.*;
+import repository.PersonRepository;
 
 import java.time.LocalDate;
 import java.util.Calendar;
 
 public class UserService {
 
+    private PersonRepository personRepository;
+
+    public UserService(){
+        this.personRepository = new PersonRepository();
+    }
+
     public void addUser(Bookster db, User user){
         db.getUsers().add(user);
+    }
+
+    public void addPerson(Person person){
+        personRepository.addPerson(person);
     }
 
     public void addPersonToCompany(Person person, Company company){
@@ -65,6 +76,10 @@ public class UserService {
             }
 
         System.out.println(companyName + " " + date);
+    }
+
+    public void removePerson(String username){
+        personRepository.removePerson(username);
     }
 
     public void removeUser(Bookster db, String username){

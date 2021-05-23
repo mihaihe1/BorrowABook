@@ -11,6 +11,16 @@ public class Service {
 
     public void addUser(Bookster db, User user){ userService.addUser(db, user); loggingService.logEvent("add user");}
 
+    public void addPerson(Person person){
+        userService.addPerson(person);
+        loggingService.logEvent("add person");
+    }
+
+    public void removePerson(String username){
+        userService.removePerson(username);
+        loggingService.logEvent("remove person");
+    }
+
     public void removeUser(Bookster db, String username){ userService.removeUser(db, username); loggingService.logEvent("remove user");}
 
     public Person searchPerson(Bookster db, String username){ Person p = userService.searchPerson(db, username); loggingService.logEvent("search person"); return p;}
@@ -36,14 +46,34 @@ public class Service {
 
 
 
-    public void addBook(Bookster db, Book book){
-        bookService.addBook(db, book);
+    public void addPhysicalBook(PhysicalBook book){
+        bookService.addPhysicalBook(book);
         loggingService.logEvent("add book");
+    }
+
+    public void addDigitalBook(DigitalBook book){
+        bookService.addDigitalBook(book);
+        loggingService.logEvent("add book");
+    }
+
+    public void removePhysicalBook(int id){
+        bookService.removePhysicalBook(id);
+        loggingService.logEvent("remove physical book");
+    }
+
+    public void removeDigitalBook(int id){
+        bookService.removeDigitalBook(id);
+        loggingService.logEvent("remove digital book");
     }
 
     public void removeBook(Bookster db, String bookTitle){
         bookService.removeBook(db, bookTitle);
         loggingService.logEvent("remove book");
+    }
+
+    public void removePickUpPoint(int id){
+        pickUpPointService.removePickUpPoint(id);
+        loggingService.logEvent("remove pickuppoint");
     }
 
     public void printBooksDetails(Bookster db){
@@ -72,8 +102,8 @@ public class Service {
         return b;
     }
 
-    public void addPickUpPoint(Bookster db, PickUpPoint pickUpPoint){
-        pickUpPointService.addPickUpPoint(db, pickUpPoint);
+    public void addPickUpPoint(PickUpPoint pickUpPoint){
+        pickUpPointService.addPickUpPoint(pickUpPoint);
         loggingService.logEvent("add pick up point");
     }
 
@@ -82,8 +112,8 @@ public class Service {
         loggingService.logEvent("print pick up points");
     }
 
-    public void updatePickUpPointAddress(PickUpPoint pickUpPoint, String address){
-        pickUpPoint.setAddress(address);
+    public void updatePickUpPointAddress(int id, String address){
+        pickUpPointService.updatePickUpPointAddress(id, address);
         loggingService.logEvent("update pick up point");
     }
 

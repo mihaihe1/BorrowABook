@@ -2,10 +2,21 @@ package service;
 
 import model.Bookster;
 import model.PickUpPoint;
+import repository.PickuppointRepository;
 
 public class PickUpPointService {
-    public void addPickUpPoint(Bookster db, PickUpPoint pickUpPoint){
-        db.getPickUpPoints().add(pickUpPoint);
+
+    private PickuppointRepository pickuppointRepository;
+
+    public  PickUpPointService(){
+        this.pickuppointRepository = new PickuppointRepository();
+    }
+    public void addPickUpPoint(PickUpPoint pickUpPoint){
+        pickuppointRepository.addPickuppoint(pickUpPoint);
+    }
+
+    public void removePickUpPoint(int id){
+        pickuppointRepository.removePickUpPoint(id);
     }
 
     public int getNumberOfPickUpPoints(Bookster db){
@@ -25,7 +36,7 @@ public class PickUpPointService {
         }
     }
 
-    public void updatePickUpPointAddress(PickUpPoint pickUpPoint, String address){
-        pickUpPoint.setAddress(address);
+    public void updatePickUpPointAddress(int id, String address){
+        pickuppointRepository.updatePickUpPointAddress(id, address);
     }
 }

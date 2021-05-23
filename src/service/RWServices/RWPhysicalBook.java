@@ -42,8 +42,8 @@ public class RWPhysicalBook {
                 String coverType = arr[6];
                 boolean isNew = Boolean.parseBoolean(arr[7]);
 
-                Book book = new PhysicalBook(title, author, pageNumber, genre, publicationYear, stock, coverType, isNew);
-                service.addBook(db, book);
+                PhysicalBook book = new PhysicalBook(title, author, pageNumber, genre, publicationYear, stock, coverType, isNew);
+                service.addPhysicalBook(book);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");

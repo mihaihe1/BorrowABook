@@ -38,7 +38,7 @@ public class RWPickUpPoint {
                 boolean openedOnWeekends = Boolean.parseBoolean(arr[2]);
 
                 PickUpPoint pickUpPoint = new PickUpPoint(city, address, openedOnWeekends);
-                service.addPickUpPoint(db, pickUpPoint);
+                service.addPickUpPoint(pickUpPoint);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");

@@ -1,11 +1,25 @@
 package service;
 
 import model.*;
+import repository.DigitalbookRepository;
+import repository.PhysicalbookRepository;
 
 public class BookService {
 
-    public void addBook(Bookster db, Book book){
-        db.getBooks().add(book);
+    private PhysicalbookRepository physicalbookRepository;
+    private DigitalbookRepository digitalbookRepository;
+
+    public BookService(){
+        this.physicalbookRepository = new PhysicalbookRepository();
+        this.digitalbookRepository = new DigitalbookRepository();
+    }
+
+    public void addPhysicalBook(PhysicalBook book){
+        physicalbookRepository.addPhysicalBook(book);
+    }
+
+    public void addDigitalBook(DigitalBook book){
+        digitalbookRepository.addDigitalBook(book);
     }
 
     public int getNumberOfBooks(Bookster db){
@@ -51,6 +65,14 @@ public class BookService {
                 b.setNrRatings(nrRatings+1);
                 b.setUserRating(newRating);
             }
+    }
+
+    public void removeDigitalBook(int id){
+        digitalbookRepository.deleteDigitalBook(id);
+    }
+
+    public void removePhysicalBook(int id){
+        physicalbookRepository.deletePhysicalBook(id);
     }
 
     public void removeBook(Bookster db, String bookTitle){
