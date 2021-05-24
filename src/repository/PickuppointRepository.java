@@ -3,6 +3,7 @@ package repository;
 import config.*;
 import model.*;
 
+import javax.swing.text.html.Option;
 import java.sql.*;
 import java.util.*;
 
@@ -40,5 +41,24 @@ public class PickuppointRepository {
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public Optional<PickUpPoint> getPickUpPointById(int id){
+        String sql = "select * from pickuppoints where id = ?";
+        try(PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                //i have at least one record in the result set
+                int pointId = result.getInt(1);
+                String city = result.getString("city");
+                String address = result.getString("address");
+                boolean openedOnWeekends = Boolean.parseBoolean(result.getString("openedOnWeekends"));
+                return Optional.of(new PickUpPoint(city, address, openedOnWeekends));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
     }
 }

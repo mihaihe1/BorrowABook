@@ -97,4 +97,20 @@ public class PhysicalbookRepository {
         }
         return 0;
     }
+
+    public void searchBooksByGenre(String genre){
+        String sql = "select * from physicalbooks where genre = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setString(1, genre);
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                String title = result.getString("title");
+                String author = result.getString("author");
+
+                System.out.println(title + " by " + author + "\n");
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

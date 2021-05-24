@@ -6,6 +6,7 @@ import repository.PersonRepository;
 
 import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Optional;
 
 public class UserService {
 
@@ -50,39 +51,30 @@ public class UserService {
         }
     }
 
-    public int getNumberOfEmployees(Company company){
-        int numberOfEmployees = 0;
-        for(Person p : company.getEmployees())
-            if(p != null)
-                numberOfEmployees++;
+//    public int getMaxToBorrow(Bookster db, User user){
+//        for(User u : db.getUsers())
+//            if(u instanceof Company){
+//                Person[] employeeList = ((Company) u).getEmployees();
+//                for(Person p : employeeList)
+//                    if(p != null && p.getUserName().equals(user.getUserName()))
+//                        return ((Company) u).getSubscription().getMaxNumberToBorrow();
+//            }
+//
+//        return 0;
+//    }
 
-        return numberOfEmployees;
-    }
-
-    public int getMaxToBorrow(Bookster db, User user){
-        for(User u : db.getUsers())
-            if(u instanceof Company){
-                Person[] employeeList = ((Company) u).getEmployees();
-                for(Person p : employeeList)
-                    if(p != null && p.getUserName().equals(user.getUserName()))
-                        return ((Company) u).getSubscription().getMaxNumberToBorrow();
-            }
-
-        return 0;
-    }
-
-    public void printFirstCompanyWithExpiredSubscription(Bookster db){
-        LocalDate date = LocalDate.of(2022, 1, 1);
-        String companyName = "";
-
-        for(User u : db.getUsers())
-            if (u instanceof Company && ((Company) u).getSubscription().getExpirationDate().compareTo(date) < 0){
-                date = ((Company)u).getSubscription().getExpirationDate();
-                companyName = ((Company)u).getCompanyName();
-            }
-
-        System.out.println(companyName + " " + date);
-    }
+//    public void printFirstCompanyWithExpiredSubscription(Bookster db){
+//        LocalDate date = LocalDate.of(2022, 1, 1);
+//        String companyName = "";
+//
+//        for(User u : db.getUsers())
+//            if (u instanceof Company && ((Company) u).getSubscription().getExpirationDate().compareTo(date) < 0){
+//                date = ((Company)u).getSubscription().getExpirationDate();
+//                companyName = ((Company)u).getCompanyName();
+//            }
+//
+//        System.out.println(companyName + " " + date);
+//    }
 
     public void removePerson(String username){
         personRepository.removePerson(username);
@@ -92,6 +84,13 @@ public class UserService {
         companyRepository.removeCompany(username);
     }
 
+    public Optional<Company> getCompanyById(int id){
+        return companyRepository.getCompanyById(id);
+    }
+
+    public void updateCompanyLocation(int id, String location){
+        companyRepository.updateCompanyLocation(id, location);
+    }
 
     public Person searchPerson(Bookster db, String username){
         for(User u: db.getUsers())

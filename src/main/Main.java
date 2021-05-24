@@ -39,12 +39,13 @@ import repository.PickuppointRepository;
 import service.*;
 import service.RWServices.*;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args){
 
-        Bookster db = new Bookster();
+//        Bookster db = new Bookster();
         Service service = new Service();
         Scanner scanner = new Scanner(System.in);
 //        RWPerson rwPerson = RWPerson.getInstance();
@@ -60,87 +61,47 @@ public class Main {
 //        RWBorrowing rwBorrowing = RWBorrowing.getInstance();
 //        rwBorrowing.read(db, service);
 
-//        service.addPersonToCompany((Person) user2, (Company) userTesla);
 
 
-//        System.out.println("Inainte si dupa actualizare stoc");
-//        service.printBooksDetails(db);
-//        service.updateBookStock(book1, 5);
-//        service.printBooksDetails(db);
-//        System.out.println();
+//          Optional<Company> comp1 = service.getCompanyById(5);
+//        System.out.println(comp1.get());
 //
-        User user1 = new Person("mihai_test", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
-        PhysicalBook book1 = new PhysicalBook("Test Rating", "Dostoevsky", 500, "mystery",1866,2,"Hard",true);
-        DigitalBook book2 = new DigitalBook("Test Rating", "Dostoevsky", 500, "mystery",1866,2,".pdf",true);
-        Company userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], db.getSubscriptions().get(0));
-//        service.addPhysicalBook(book1);
+//        service.searchBookByGenre("mystery");
+//        service.updateCompanyLocation(10, "Str. Update");
+//        User user1 = new Person("mihai_test", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
+//        PhysicalBook book1 = new PhysicalBook("Test Rating", "Dostoevsky", 500, "mystery",1866,2,"Hard",true);
+//        DigitalBook book2 = new DigitalBook("Test Rating", "Dostoevsky", 500, "mystery",1866,2,".pdf",true);
+//        Company userGoogle = new Company("google_bookster", "12345", "google@gmail.com", "Google","Str. Google", new Person[100], db.getSubscriptions().get(0));
+////        service.addPhysicalBook(book1);
 //        service.addDigitalBook(book2);
+//        service.rateDigitalBook(user1, book2, 3);
 //        service.addUser(db, user1);
 //        service.addUser(db, userGoogle);
-        service.addCompany(userGoogle);
+//        service.addCompany(userGoogle);
+//        service.updateBook(15, 2, 3);
 //        service.addPersonToCompany((Person)user1, (Company)userGoogle);
-        Person user2 = new Person("mihai_test_comp", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
-        service.addPerson(user2);
-        Borrowing borrowing1 = new Borrowing(user2, book1);
-//        service.addBorrowing(db, borrowing1);
+//        Person user2 = new Person("mihai_test_comp", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
+//        service.addPerson(user2);
+//        Borrowing borrowing1 = new Borrowing(user2, book1);
+//        service.addBorrowing(borrowing1);
 //        PickUpPoint pickUpPoint = new PickUpPoint("Bucharest", "Str. Unirii", true);
 //        service.addPickUpPoint(pickUpPoint);
 //        service.removeDigitalBook(3);
 //        service.removePhysicalBook(5);
 //        service.removePerson("mihai_test");
-        service.removePickUpPoint(2);
-        service.updatePickUpPointAddress(4, "Str. Test");
-//        service.removeBorrowing(1, 2);
-        service.ratePhysicalBook(user2, book1, 5);
+//        service.removePickUpPoint(2);
+//        service.updatePickUpPointAddress(4, "Str. Test");
+////        service.removeBorrowing(1, 2);
+//        service.ratePhysicalBook(user2, book1, 5);
         ////        Borrowing borrowing2 = new Borrowing(user1, book2);
 //        Borrowing borrowing3 = new Borrowing(user2, book2);
 //        Borrowing borrowing4 = new Borrowing(userGoogle, book2);
 //        System.out.println("Borrow");
-////        service.addBorrowing(db, borrowing1);
-////        service.addBorrowing(db, borrowing2);
-//        service.addBorrowing(db, borrowing3);
-//        service.addBorrowing(db, borrowing4);
-//        System.out.println("Afisare imprumuturi si modificarile din stoc");
-//        service.printBorrowingDetails(db);
-//        service.printBooksDetails(db);
-//        System.out.println();
-//
-//        System.out.println("Actualizare adresa pickup");
-//        service.updatePickUpPointAddress(pickUpUnirii, "Str. Unirii2");
-//        service.printPickUpPoints(db);
-//        System.out.println();
-//
-//        System.out.println("Afisare carti dintr-un anumit gen");
-//        service.searchBookByGenre(db, "mystery");
-//        System.out.println();
-//
-//        System.out.println("Afisare carte inainte si dupa ce userul acorda rating");
-//        service.printBooksDetails(db);
-////        service.rateBook(db, user1, "Crime and Punishment", 5);
-//        service.rateBook(db, user2, "Crime and Punishment", 4);
-//        service.printBooksDetails(db);
-//        System.out.println();
-//
-//        System.out.println("Afisarea companiei careia ii expira cel mai repede abonamentul");
-//        service.printFirstCompanyWithExpiredSubscription(db);
-//        System.out.println();
-//
-//        System.out.println("Stergere carte");
-//        service.printBooksDetails(db);
-////        service.removeBook(db, "The Metamorphosis");
-//        service.printBooksDetails(db);
-//        System.out.println();
-//
-//        System.out.println("Stergere user");
-//        service.printUsersDetails(db);
-////        service.removeUser(db, "andrei");
-//        service.removeUser(db, "tesla_books");
-//        service.printUsersDetails(db);
 
 
 //         ---------------------MENU-----------------------
         while(true){
-            System.out.println("Please type one of the following commands: add / view / person to company(p2c) / exit");
+            System.out.println("Please type one of the following commands: add / view / get pickuppoint(get) / person to company(p2c) / search book by genre(search) exit");
             String line = scanner.nextLine();
             switch (line){
                 case "add":
@@ -186,7 +147,7 @@ public class Main {
                                         case "gold" -> sub = 2;
                                         default -> throw new IllegalStateException("Unexpected value: " + subType);
                                     }
-                                    Company comp = new Company(username, password, email, companyName, location, new Person[50], db.getSubscriptions().get(sub));
+                                    Company comp = new Company(username, password, email, companyName, location);
                                     service.addCompany(comp);
                                     break;
                             }
@@ -272,20 +233,33 @@ public class Main {
                     service.addPersonToCompany(pUsername, companyId);
                     break;
 
+                case "get":
+                    System.out.println("Please type the id of the pickup point");
+                    Optional<PickUpPoint> pickUpPoint = service.getPickupPointById(Integer.parseInt(scanner.nextLine()));
+                    if(pickUpPoint.isPresent()){
+                        System.out.println(pickUpPoint.get());
+                    }
+                    break;
+
+                case "search":
+                    System.out.println("Please type the genre");
+                    service.searchBookByGenre(scanner.nextLine());
+                    break;
+
                 case "view":
                     System.out.println("books / users / pickup point");
                     String lineView = scanner.nextLine();
                     switch (lineView){
                         case "books":
-                            service.printBooksDetails(db);
+//                            service.printBooksDetails(db);
                             break;
 
                         case "users":
-                            service.printUsersDetails(db);
+//                            service.printUsersDetails(db);
                             break;
 
                         case "pickup point":
-                            service.printPickUpPoints(db);
+//                            service.printPickUpPoints(db);
                             break;
 
                         case "default":

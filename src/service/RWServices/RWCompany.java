@@ -46,7 +46,7 @@ public class RWCompany {
                     default -> throw new IllegalStateException("Unexpected value: " + subscription);
                 }
 
-                User user = new Company(username, password, email, companyName, location, new Person[50], db.getSubscriptions().get(type));
+                User user = new Company(username, password, email, companyName, location);
                 service.addUser(db, user);
             }
         } catch (NoSuchFileException e) {
@@ -80,7 +80,7 @@ public class RWCompany {
             for (User user : users)
                 if (user instanceof Company){
                     writer.write(user.getUserName() + "," + user.getPassword() + "," + user.getEmail() + "," + ((Company) user).getCompanyName()
-                            + "," + ((Company) user).getLocation() + "," + ((Company) user).getSubscription().getSubscriptionType() + "\n");
+                            + "," + ((Company) user).getLocation() + "\n");
                     writer.flush();
                 }
         } catch (IOException e) {

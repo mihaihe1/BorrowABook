@@ -22,16 +22,6 @@ public class BookService {
         digitalbookRepository.addDigitalBook(book);
     }
 
-    public int getNumberOfBooks(Bookster db){
-        int nrBooks = 0;
-        for(Book b : db.getBooks()){
-            if(b != null){
-                nrBooks++;
-            }
-        }
-        return nrBooks;
-    }
-
     public void printBooksDetails(Bookster db){
         for(Book b : db.getBooks()){
             if(b != null)
@@ -43,21 +33,16 @@ public class BookService {
         book.setStock(stock);
     }
 
-    public void searchBookByGenre(Bookster db, String genre){
-
-        boolean ok = false;
-
-        for(Book b : db.getBooks())
-            if(b != null && b.getGenre().equals(genre)){
-                System.out.println(b);
-                ok = true;
-            }
-        if(!ok)
-            System.out.println("There are no books of that genre!");
+    public void searchBookByGenre(String genre){
+        physicalbookRepository.searchBooksByGenre(genre);
     }
 
     public void ratePhysicalBook(User user, PhysicalBook book, int rating){
         physicalbookRepository.ratePhysicalBook(user, book, rating);
+    }
+
+    public void rateDigitalBook(User user, DigitalBook book, int rating){
+        digitalbookRepository.rateDigitalBook(user, book, rating);
     }
 
     public void removeDigitalBook(int id){
@@ -68,12 +53,5 @@ public class BookService {
         physicalbookRepository.deletePhysicalBook(id);
     }
 
-
-    public Book searchBook(Bookster db, String bookTitle) {
-        for(Book b: db.getBooks())
-            if (b != null && b.getTitle().equals(bookTitle))
-                return b;
-        return null;
-    }
 
 }

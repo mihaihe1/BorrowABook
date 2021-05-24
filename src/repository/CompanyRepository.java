@@ -33,4 +33,36 @@ public class CompanyRepository {
             e.printStackTrace();
         }
     }
+
+    public Optional<Company> getCompanyById(int id){
+        String sql = "select * from companies where id = ?";
+        try(PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                //i have at least one record in the result set
+
+                String username = result.getString("userName");
+                String password = result.getString("password");
+                String email = result.getString("email");
+                String companyName = result.getString("companyName");
+                String location = result.getString("location");
+                return Optional.of(new Company(username, password, email, companyName, location));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
+
+    public void updateCompanyLocation(int id, String location){
+        String sql = "update companies set location = ? where id = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {//try with resources
+            statement.setString(1, location);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

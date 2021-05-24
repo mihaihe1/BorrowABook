@@ -40,14 +40,10 @@ public class RWBorrowing {
                     System.out.println("The user doesn't exist");
                     return;
                 }
-                Book b = service.searchBook(db, bookTitle);
-                if (b == null){
-                    System.out.println("The book doesn't exist");
-                    return;
-                }
-
-                Borrowing borrowing = new Borrowing(u, b);
-                service.addBorrowing(db, borrowing);
+//
+//
+//                Borrowing borrowing = new Borrowing(u, b);
+//                service.addBorrowing(borrowing);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");

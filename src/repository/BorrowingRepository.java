@@ -63,4 +63,17 @@ public class BorrowingRepository {
             e.printStackTrace();
         }
     }
+
+    public void updateBook(int id_user, int id_book, int newBookId){
+        String sql = "update borrowings set id_book = ? where id_user = ? and id_book = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {//try with resources
+            statement.setInt(1, newBookId);
+            statement.setInt(2, id_user);
+            statement.setInt(3, id_book);
+
+            statement.executeUpdate();
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

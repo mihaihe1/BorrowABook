@@ -1,6 +1,8 @@
 package service;
 import model.*;
 
+import java.util.Optional;
+
 public class Service {
 
     private final BookService bookService = new BookService();
@@ -37,6 +39,17 @@ public class Service {
 
     public User searchUser(Bookster db, String username){ User u = userService.searchUser(db, username); loggingService.logEvent("search user"); return u;}
 
+    public Optional<Company> getCompanyById(int id){
+        loggingService.logEvent("get company by id");
+        return userService.getCompanyById(id);
+    }
+
+    public void updateCompanyLocation(int id, String location){
+        userService.updateCompanyLocation(id, location);
+        loggingService.logEvent("update company location");
+    }
+
+
     public void addPersonToCompany(String username,int id){
         userService.addPersonToCompany(username, id);
         loggingService.logEvent("add person to company");
@@ -46,12 +59,6 @@ public class Service {
         userService.printUsersDetails(db);
         loggingService.logEvent("print users");
     }
-
-    public void printFirstCompanyWithExpiredSubscription(Bookster db){
-        userService.printFirstCompanyWithExpiredSubscription(db);
-        loggingService.logEvent("print first company with expired sub");
-    }
-
 
 
     public void addPhysicalBook(PhysicalBook book){
@@ -84,8 +91,8 @@ public class Service {
         loggingService.logEvent("print books");
     }
 
-    public void searchBookByGenre(Bookster db, String genre){
-        bookService.searchBookByGenre(db, genre);
+    public void searchBookByGenre(String genre){
+        bookService.searchBookByGenre(genre);
         loggingService.logEvent("search book by genre");
     }
 
@@ -99,12 +106,11 @@ public class Service {
         loggingService.logEvent("rate physical book");
     }
 
-
-    public Book searchBook(Bookster db, String bookTitle){
-        Book b = bookService.searchBook(db, bookTitle);
-        loggingService.logEvent("search book");
-        return b;
+    public void rateDigitalBook(User user, DigitalBook book, int rating){
+        bookService.rateDigitalBook(user, book, rating);
+        loggingService.logEvent("rate digital book");
     }
+
 
     public void addPickUpPoint(PickUpPoint pickUpPoint){
         pickUpPointService.addPickUpPoint(pickUpPoint);
@@ -121,15 +127,24 @@ public class Service {
         loggingService.logEvent("update pick up point");
     }
 
+    public Optional<PickUpPoint> getPickupPointById(int id){
+        return pickUpPointService.getPickupPointById(id);
+    }
 
-    public void addBorrowing(Bookster db, Borrowing borrowing){
-        borrowingService.addBorrowing(db, borrowing);
+    public void addBorrowing(Borrowing borrowing){
+        borrowingService.addBorrowing(borrowing);
         loggingService.logEvent("add borrowing");
     }
 
     public void removeBorrowing(int id_user, int id_book){
         borrowingService.removeBorrowing(id_user, id_book);
         loggingService.logEvent("remove borrowing");
+    }
+
+
+    public void updateBook(int id_user, int id_book, int newBookId){
+        borrowingService.updateBook(id_user, id_book, newBookId);
+        loggingService.logEvent("update book in borrowing");
     }
 
     public void printBorrowingDetails(Bookster db){
