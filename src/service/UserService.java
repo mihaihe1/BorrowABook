@@ -1,6 +1,7 @@
 package service;
 
 import model.*;
+import repository.CompanyRepository;
 import repository.PersonRepository;
 
 import java.time.LocalDate;
@@ -9,9 +10,11 @@ import java.util.Calendar;
 public class UserService {
 
     private PersonRepository personRepository;
+    private CompanyRepository companyRepository;
 
     public UserService(){
         this.personRepository = new PersonRepository();
+        this.companyRepository = new CompanyRepository();
     }
 
     public void addUser(Bookster db, User user){
@@ -20,6 +23,10 @@ public class UserService {
 
     public void addPerson(Person person){
         personRepository.addPerson(person);
+    }
+
+    public void addCompany(Company company){
+        companyRepository.addCompany(company);
     }
 
     public void addPersonToCompany(Person person, Company company){
@@ -80,6 +87,10 @@ public class UserService {
 
     public void removePerson(String username){
         personRepository.removePerson(username);
+    }
+
+    public void removeCompany(String username){
+        companyRepository.removeCompany(username);
     }
 
     public void removeUser(Bookster db, String username){

@@ -16,9 +16,19 @@ public class Service {
         loggingService.logEvent("add person");
     }
 
+    public void addCompany(Company company){
+        userService.addCompany(company);
+        loggingService.logEvent("add company");
+    }
+
     public void removePerson(String username){
         userService.removePerson(username);
         loggingService.logEvent("remove person");
+    }
+
+    public void removeCompany(String username){
+        userService.removeCompany(username);
+        loggingService.logEvent("remove company");
     }
 
     public void removeUser(Bookster db, String username){ userService.removeUser(db, username); loggingService.logEvent("remove user");}
@@ -121,6 +131,11 @@ public class Service {
     public void addBorrowing(Bookster db, Borrowing borrowing){
         borrowingService.addBorrowing(db, borrowing);
         loggingService.logEvent("add borrowing");
+    }
+
+    public void removeBorrowing(int id_user, int id_book){
+        borrowingService.removeBorrowing(id_user, id_book);
+        loggingService.logEvent("remove borrowing");
     }
 
     public void printBorrowingDetails(Bookster db){

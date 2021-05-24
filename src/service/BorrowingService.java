@@ -1,9 +1,18 @@
 package service;
 
 import model.*;
+import repository.BorrowingRepository;
 
 public class BorrowingService {
+
+    private BorrowingRepository borrowingRepository;
+
+    public BorrowingService(){
+        this.borrowingRepository = new BorrowingRepository();
+    }
+
     public void addBorrowing(Bookster db, Borrowing borrowing){
+        borrowingRepository.addBorrowing(borrowing);
 //        boolean inStock = false;
         String borrowedBookTitle = borrowing.getBook().getTitle();
         int maxToBorrow = getMaxToBorrow(db, borrowing.getUser());
@@ -33,6 +42,10 @@ public class BorrowingService {
             }
             System.out.println("User: " + borrowing.getUser().getUserName() + " can borrow " + (maxToBorrow - nrBooksBorrowed - 1) + " more books!");
         }
+    }
+
+    public void removeBorrowing(int id_user, int id_book){
+        borrowingRepository.removeBorrowing(id_user, id_book);
     }
 
     public int getNumberOfBorrowedBooksByUser(Bookster db, User user){
