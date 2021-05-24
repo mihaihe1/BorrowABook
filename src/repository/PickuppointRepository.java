@@ -22,7 +22,7 @@ public class PickuppointRepository {
     }
 
     public void removePickUpPoint(int id){
-        System.out.println("qqq");
+//        System.out.println("qqq");
         String sql = "delete from pickuppoints where id = " + id;
         try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {//try with resources
             statement.executeUpdate();

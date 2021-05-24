@@ -29,9 +29,8 @@ public class UserService {
         companyRepository.addCompany(company);
     }
 
-    public void addPersonToCompany(Person person, Company company){
-        int nextAvailableIndex = getNumberOfEmployees(company);
-        company.getEmployees()[nextAvailableIndex] = person;
+    public void addPersonToCompany(String username, int id){
+        personRepository.addPersonToCompany(username, id);
     }
 
     public int getNumberOfUsers(Bookster db){
@@ -93,14 +92,6 @@ public class UserService {
         companyRepository.removeCompany(username);
     }
 
-    public void removeUser(Bookster db, String username){
-        for(User u : db.getUsers()) {
-            if (u != null && u.getUserName().equals(username)) {
-                db.getUsers().remove(u);
-                break;
-            }
-        }
-    }
 
     public Person searchPerson(Bookster db, String username){
         for(User u: db.getUsers())

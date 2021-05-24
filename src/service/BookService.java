@@ -56,15 +56,8 @@ public class BookService {
             System.out.println("There are no books of that genre!");
     }
 
-    public void rateBook(Bookster db, User user, String bookTitle, int rating){
-        for(Book b : db.getBooks())
-            if(b != null && b.getTitle().equals(bookTitle)){
-                double ratingActual = b.getUserRating();
-                int nrRatings = b.getNrRatings();
-                double newRating = ((ratingActual * nrRatings) + rating) / (nrRatings+1);
-                b.setNrRatings(nrRatings+1);
-                b.setUserRating(newRating);
-            }
+    public void ratePhysicalBook(User user, PhysicalBook book, int rating){
+        physicalbookRepository.ratePhysicalBook(user, book, rating);
     }
 
     public void removeDigitalBook(int id){
@@ -75,14 +68,6 @@ public class BookService {
         physicalbookRepository.deletePhysicalBook(id);
     }
 
-    public void removeBook(Bookster db, String bookTitle){
-        for(Book b : db.getBooks()) {
-            if (b != null && b.getTitle().equals(bookTitle)) {
-                db.getBooks().remove(b);
-                break;
-            }
-        }
-    }
 
     public Book searchBook(Bookster db, String bookTitle) {
         for(Book b: db.getBooks())

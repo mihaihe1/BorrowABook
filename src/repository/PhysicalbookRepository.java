@@ -35,4 +35,66 @@ public class PhysicalbookRepository {
             e.printStackTrace();
         }
     }
+
+    public void ratePhysicalBook(User user, PhysicalBook book, int rating){
+        String sql = "update physicalbooks set userRating = ?,nrRatings = ? where id = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {//try with resources
+            int bookId = getBookId(book);
+            double ratingActual = getRating(bookId);
+            int nrRatings = getNrRatings(bookId);
+            double newRating = ((ratingActual * nrRatings) + rating) / (nrRatings+1);
+            statement.setDouble(1, newRating);
+            statement.setInt(2, nrRatings+1);
+            statement.setInt(3, bookId);
+
+            statement.executeUpdate();
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getBookId(PhysicalBook book){
+        String sql = "select * from physicalbooks where title = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setString(1, book.getTitle());
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                int id = result.getInt("id");
+                return id;
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public double getRating(int id){
+        String sql = "select * from physicalbooks where id = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                double rating = result.getDouble("userRating");
+                return rating;
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getNrRatings(int id){
+        String sql = "select * from physicalbooks where id = ?";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                int nr = result.getInt("nrRatings");
+                return nr;
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

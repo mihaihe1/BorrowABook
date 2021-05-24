@@ -31,16 +31,14 @@ public class Service {
         loggingService.logEvent("remove company");
     }
 
-    public void removeUser(Bookster db, String username){ userService.removeUser(db, username); loggingService.logEvent("remove user");}
-
     public Person searchPerson(Bookster db, String username){ Person p = userService.searchPerson(db, username); loggingService.logEvent("search person"); return p;}
 
     public Company searchCompany(Bookster db, String username){ Company c = userService.searchCompany(db, username); loggingService.logEvent("search company"); return c;}
 
     public User searchUser(Bookster db, String username){ User u = userService.searchUser(db, username); loggingService.logEvent("search user"); return u;}
 
-    public void addPersonToCompany(Person person, Company company){
-        userService.addPersonToCompany(person, company);
+    public void addPersonToCompany(String username,int id){
+        userService.addPersonToCompany(username, id);
         loggingService.logEvent("add person to company");
     }
 
@@ -76,11 +74,6 @@ public class Service {
         loggingService.logEvent("remove digital book");
     }
 
-    public void removeBook(Bookster db, String bookTitle){
-        bookService.removeBook(db, bookTitle);
-        loggingService.logEvent("remove book");
-    }
-
     public void removePickUpPoint(int id){
         pickUpPointService.removePickUpPoint(id);
         loggingService.logEvent("remove pickuppoint");
@@ -101,10 +94,11 @@ public class Service {
         loggingService.logEvent("update book stock");
     }
 
-    public void rateBook(Bookster db, User user, String bookTitle, int rating){
-        bookService.rateBook(db, user, bookTitle, rating);
-        loggingService.logEvent("rate book");
+    public void ratePhysicalBook(User user, PhysicalBook book, int rating){
+        bookService.ratePhysicalBook(user, book, rating);
+        loggingService.logEvent("rate physical book");
     }
+
 
     public Book searchBook(Bookster db, String bookTitle){
         Book b = bookService.searchBook(db, bookTitle);
