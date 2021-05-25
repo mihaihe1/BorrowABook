@@ -113,4 +113,30 @@ public class PhysicalbookRepository {
             e.printStackTrace();
         }
     }
+
+    public Optional<PhysicalBook> getPhysicalBookById(int id){
+        String sql = "select * from physicalbooks where id = ?";
+        try(PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                int bookId = result.getInt(1);
+                String author = result.getString("author");
+                String title = result.getString("title");
+                int pageNumber = result.getInt("pageNumber");
+                String genre = result.getString("genre");
+                int publicationYear = result.getInt("publicationYear");
+                double userRating = result.getDouble("userRating");
+                int nrRatings = result.getInt("nrRatings");
+                int stock = result.getInt("stock");
+                String coverType = result.getString("coverType");
+                boolean isNew = result.getBoolean("isNew");
+
+                return Optional.of(new PhysicalBook(title, author, pageNumber, genre, publicationYear, stock, coverType, isNew));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 }

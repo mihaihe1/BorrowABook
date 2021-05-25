@@ -4,6 +4,8 @@ import model.*;
 import repository.DigitalbookRepository;
 import repository.PhysicalbookRepository;
 
+import java.util.Optional;
+
 public class BookService {
 
     private PhysicalbookRepository physicalbookRepository;
@@ -22,11 +24,8 @@ public class BookService {
         digitalbookRepository.addDigitalBook(book);
     }
 
-    public void printBooksDetails(Bookster db){
-        for(Book b : db.getBooks()){
-            if(b != null)
-                System.out.println(b);
-        }
+    public void printBooksDetails(){
+        digitalbookRepository.printBooksDetails();
     }
 
     public void updateBookStock(Book book, int stock){
@@ -37,13 +36,9 @@ public class BookService {
         physicalbookRepository.searchBooksByGenre(genre);
     }
 
-    public void ratePhysicalBook(User user, PhysicalBook book, int rating){
-        physicalbookRepository.ratePhysicalBook(user, book, rating);
-    }
+    public void ratePhysicalBook(User user, PhysicalBook book, int rating){ physicalbookRepository.ratePhysicalBook(user, book, rating); }
 
-    public void rateDigitalBook(User user, DigitalBook book, int rating){
-        digitalbookRepository.rateDigitalBook(user, book, rating);
-    }
+    public void rateDigitalBook(User user, DigitalBook book, int rating){ digitalbookRepository.rateDigitalBook(user, book, rating); }
 
     public void removeDigitalBook(int id){
         digitalbookRepository.deleteDigitalBook(id);
@@ -53,5 +48,7 @@ public class BookService {
         physicalbookRepository.deletePhysicalBook(id);
     }
 
+    public Optional<PhysicalBook> getPhysicalBookById(int id){ return physicalbookRepository.getPhysicalBookById(id); }
 
+    public Optional<DigitalBook> getDigitalBookById(int id){ return digitalbookRepository.getDigitalBookById(id); }
 }

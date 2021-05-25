@@ -5,12 +5,11 @@ CREATE TABLE pickuppoints ( id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, city 
 CREATE TABLE borrowings ( id_user INT, id_book INT, PRIMARY KEY (id_user, id_book), starting_date DATE, ending_date DATE);
 CREATE TABLE companies (id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, username VARCHAR(30), password VARCHAR(30), email VARCHAR(30), companyName VARCHAR(30), location VARCHAR(30));
 
-drop table persons;
-
 select * from companies;
 select * from persons;
 select * from physicalbooks;
 select * from digitalbooks;
 select * from borrowings;
+select * from pickuppoints;
 
 delete from physicalbooks where pageNumber = 500;

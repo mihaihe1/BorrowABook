@@ -47,7 +47,7 @@ public class RWCompany {
                 }
 
                 User user = new Company(username, password, email, companyName, location);
-                service.addUser(db, user);
+//                service.addUser(db, user);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");

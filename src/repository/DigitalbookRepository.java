@@ -97,4 +97,47 @@ public class DigitalbookRepository {
         }
         return 0;
     }
+
+    public void printBooksDetails(){
+        String sql = "select * from digitalbooks";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                String title = result.getString("title");
+                String author = result.getString("author");
+                int pageNumber = result.getInt("pageNumber");
+                String genre = result.getString("genre");
+
+                System.out.println(title + " / " + author + " / " + pageNumber + " / " + genre + "\n");
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Optional<DigitalBook> getDigitalBookById(int id){
+        String sql = "select * from digitalbooks where id = ?";
+        try(PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while(result.next()) {
+                int bookId = result.getInt(1);
+                String author = result.getString("author");
+                String title = result.getString("title");
+                int pageNumber = result.getInt("pageNumber");
+                String genre = result.getString("genre");
+                int publicationYear = result.getInt("publicationYear");
+                double userRating = result.getDouble("userRating");
+                int nrRatings = result.getInt("nrRatings");
+                int stock = result.getInt("stock");
+                String format = result.getString("format");
+                boolean freeTrial = result.getBoolean("freeTrial");
+
+                return Optional.of(new DigitalBook(title, author, pageNumber, genre, publicationYear, stock, format, freeTrial));
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return Optional.empty();
+    }
 }

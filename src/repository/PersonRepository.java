@@ -46,6 +46,21 @@ public class PersonRepository {
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    public void printUsersDetails(){
+        String sql = "select * from persons";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                String username = result.getString("username");
+                String email = result.getString("email");
+                String phoneNumber = result.getString("phoneNumber");
+
+                System.out.println(username + " / " + email + " / " + phoneNumber + "\n");
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

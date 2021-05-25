@@ -61,4 +61,20 @@ public class PickuppointRepository {
         }
         return Optional.empty();
     }
+
+    public void printPickUpPoints(){
+        String sql = "select * from pickuppoints";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                String city = result.getString("city");
+                String address = result.getString("address");
+                boolean openedOnWeekends = result.getBoolean("openedOnWeekends");
+
+                System.out.println(city + " / " + address + " / " + openedOnWeekends + "\n");
+            }
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

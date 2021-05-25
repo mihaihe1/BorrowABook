@@ -35,11 +35,11 @@ public class RWBorrowing {
                 String[] arr = line.split(",");
                 String username = arr[0];
                 String bookTitle = arr[1];
-                User u = service.searchUser(db, username);
-                if (u == null){
-                    System.out.println("The user doesn't exist");
-                    return;
-                }
+//                User u = service.searchUser(db, username);
+//                if (u == null){
+//                    System.out.println("The user doesn't exist");
+//                    return;
+//                }
 //
 //
 //                Borrowing borrowing = new Borrowing(u, b);

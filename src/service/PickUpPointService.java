@@ -13,6 +13,7 @@ public class PickUpPointService {
     public  PickUpPointService(){
         this.pickuppointRepository = new PickuppointRepository();
     }
+
     public void addPickUpPoint(PickUpPoint pickUpPoint){
         pickuppointRepository.addPickuppoint(pickUpPoint);
     }
@@ -21,16 +22,9 @@ public class PickUpPointService {
         pickuppointRepository.removePickUpPoint(id);
     }
 
-    public void printPickUpPoints(Bookster db){
-        for(PickUpPoint p : db.getPickUpPoints()){
-            if(p != null)
-                System.out.println(p);
-        }
-    }
+    public void printPickUpPoints(){ pickuppointRepository.printPickUpPoints(); }
 
-    public void updatePickUpPointAddress(int id, String address){
-        pickuppointRepository.updatePickUpPointAddress(id, address);
-    }
+    public void updatePickUpPointAddress(int id, String address){ pickuppointRepository.updatePickUpPointAddress(id, address); }
 
     public Optional<PickUpPoint> getPickupPointById(int id){
         return pickuppointRepository.getPickUpPointById(id);

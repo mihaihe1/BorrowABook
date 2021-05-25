@@ -4,6 +4,7 @@ import config.*;
 import model.*;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class BorrowingRepository {
@@ -72,6 +73,22 @@ public class BorrowingRepository {
             statement.setInt(3, id_book);
 
             statement.executeUpdate();
+        } catch(SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void printBorrowingsDetails(){
+        String sql = "select * from borrowings";
+        try (PreparedStatement statement = DatabaseConnection.getInstance().prepareStatement(sql)) {
+            ResultSet result = statement.executeQuery();
+            while (result.next()){
+                int id_user = result.getInt("id_user");
+                int id_book = result.getInt("id_book");
+                Date startingDate = result.getDate("starting_date");
+                Date endingDate = result.getDate("ending_date");
+                System.out.println(id_user + " / " + id_book + " / " + startingDate + " / " + endingDate + "\n");
+            }
         } catch(SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

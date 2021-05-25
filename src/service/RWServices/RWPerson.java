@@ -43,7 +43,7 @@ public class RWPerson {
                 String phoneNumber = arr[6];
 
                 User user = new Person(username, password, email, firstName, lastName, deliveryAddress, phoneNumber);
-                service.addUser(db, user);
+//                service.addUser(db, user);
             }
         } catch (NoSuchFileException e) {
             System.out.println("The file with the name " + FILE_PATH + " doesn't exist.");

@@ -75,11 +75,9 @@ public class Main {
 ////        service.addPhysicalBook(book1);
 //        service.addDigitalBook(book2);
 //        service.rateDigitalBook(user1, book2, 3);
-//        service.addUser(db, user1);
-//        service.addUser(db, userGoogle);
+
 //        service.addCompany(userGoogle);
 //        service.updateBook(15, 2, 3);
-//        service.addPersonToCompany((Person)user1, (Company)userGoogle);
 //        Person user2 = new Person("mihai_test_comp", "1234", "mihai@gmail.com", "Mihai", "Hernest", "Str. Unibuc", "0734567890");
 //        service.addPerson(user2);
 //        Borrowing borrowing1 = new Borrowing(user2, book1);
@@ -93,15 +91,13 @@ public class Main {
 //        service.updatePickUpPointAddress(4, "Str. Test");
 ////        service.removeBorrowing(1, 2);
 //        service.ratePhysicalBook(user2, book1, 5);
-        ////        Borrowing borrowing2 = new Borrowing(user1, book2);
-//        Borrowing borrowing3 = new Borrowing(user2, book2);
-//        Borrowing borrowing4 = new Borrowing(userGoogle, book2);
+
 //        System.out.println("Borrow");
 
 
 //         ---------------------MENU-----------------------
         while(true){
-            System.out.println("Please type one of the following commands: add / view / get pickuppoint(get) / person to company(p2c) / search book by genre(search) exit");
+            System.out.println("Please type one of the following commands: add / view / get / person to company(p2c) / search book by genre(search) / exit");
             String line = scanner.nextLine();
             switch (line){
                 case "add":
@@ -234,32 +230,62 @@ public class Main {
                     break;
 
                 case "get":
-                    System.out.println("Please type the id of the pickup point");
-                    Optional<PickUpPoint> pickUpPoint = service.getPickupPointById(Integer.parseInt(scanner.nextLine()));
-                    if(pickUpPoint.isPresent()){
-                        System.out.println(pickUpPoint.get());
+                    System.out.println("Please specify the type: physicalbook / digitalbook / company / pickuppoint");
+                    String type = scanner.nextLine();
+                    switch (type) {
+                        case "digitalbook":
+                            System.out.println("Please type the id of the digital book");
+                            Optional<DigitalBook> digitalBook = service.getDigitalBookById(Integer.parseInt(scanner.nextLine()));
+                            if (digitalBook.isPresent()) {
+                                System.out.println(digitalBook.get());
+                            }
+                            break;
+                        case "physicalbook":
+                            System.out.println("Please type the id of the physical book");
+                            Optional<PhysicalBook> physicalBook = service.getPhysicalBookById(Integer.parseInt(scanner.nextLine()));
+                            if (physicalBook.isPresent()) {
+                                System.out.println(physicalBook.get());
+                            }
+                            break;
+                        case "company":
+                            System.out.println("Please type the id of the company");
+                            Optional<Company> company = service.getCompanyById(Integer.parseInt(scanner.nextLine()));
+                            if (company.isPresent()) {
+                                System.out.println(company.get());
+                            }
+                            break;
+                        case "pickuppoint":
+                            System.out.println("Please type the id of the pickup point");
+                            Optional<PickUpPoint> pickUpPoint = service.getPickupPointById(Integer.parseInt(scanner.nextLine()));
+                            if (pickUpPoint.isPresent()) {
+                                System.out.println(pickUpPoint.get());
+                            }
+                            break;
                     }
                     break;
-
                 case "search":
                     System.out.println("Please type the genre");
                     service.searchBookByGenre(scanner.nextLine());
                     break;
 
                 case "view":
-                    System.out.println("books / users / pickup point");
+                    System.out.println("books / users / pickup points / borrowings");
                     String lineView = scanner.nextLine();
                     switch (lineView){
                         case "books":
-//                            service.printBooksDetails(db);
+                            service.printBooksDetails();
                             break;
 
                         case "users":
-//                            service.printUsersDetails(db);
+                            service.printUsersDetails();
                             break;
 
-                        case "pickup point":
-//                            service.printPickUpPoints(db);
+                        case "pickup points":
+                            service.printPickUpPoints();
+                            break;
+
+                        case "borrowings":
+                            service.printBorrowingDetails();
                             break;
 
                         case "default":
